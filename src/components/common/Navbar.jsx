@@ -1,0 +1,330 @@
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import {
+	BiLogoFacebook,
+	BiLogoInstagram,
+	BiLogoLinkedinSquare,
+	BiLogoYoutube,
+} from "react-icons/bi";
+import { FaXTwitter } from "react-icons/fa6";
+
+const ConditionalRender = ({ condition, children }) => {
+	return condition ? <>{children}</> : null;
+};
+
+ConditionalRender.propTypes = {
+	condition: PropTypes.bool,
+	children: PropTypes.node,
+};
+
+const useRelume = () => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+	const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+	const openDropdown = () => setIsDropdownOpen(true);
+	const closeDropdown = () => setIsDropdownOpen(false);
+	const animateMenu = isMenuOpen
+		? { menu: "open", menu2: "openSecond" }
+		: { menu: "close", menu2: "closeSecond" };
+	const animateDropdown = isDropdownOpen ? "open" : "close";
+	const animateDropdownIcon = isDropdownOpen ? "rotated" : "initial";
+	const linkItemsClassName = (isMenuOpen) => {
+		return `hidden lg:items-center lg:justify-center lg:overflow-hidden lg:px-0 lg:text-center ${!isMenuOpen ? "lg:flex" : ""}`;
+	};
+
+	// Smooth scroll handler with accessibility
+	const handleSmoothScroll = (e, targetId) => {
+		e.preventDefault();
+		const target = document.querySelector(targetId);
+		if (target) {
+			target.scrollIntoView({ behavior: "smooth", block: "start" });
+			// Close menu after navigation on mobile
+			if (isMenuOpen) {
+				setIsMenuOpen(false);
+			}
+		}
+	};
+
+	return {
+		isDropdownOpen,
+		toggleMenu,
+		toggleDropdown,
+		openDropdown,
+		closeDropdown,
+		animateMenu,
+		animateDropdown,
+		animateDropdownIcon,
+		isMenuOpen,
+		linkItemsClassName,
+		handleSmoothScroll,
+	};
+};
+
+export function Navbar() {
+	const useActive = useRelume();
+	return (
+		<section
+			id="relume"
+			className="relative z-[999] flex min-h-16 w-full items-center border-b border-b-border-primary bg-background-primary px-[5%] md:min-h-18 transition-all duration-300 bg-primary-300 outline-none"
+		>
+			<div className="mx-auto flex size-full items-center justify-between">
+				<a
+					href="#"
+					className="transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+					aria-label="Mansyur Residence Home"
+				>
+					<img
+						src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
+						alt="Mansyur Residence Logo"
+						className="h-8 md:h-10 w-auto"
+					/>
+				</a>
+				<div className="flex items-center justify-center gap-2 lg:gap-4">
+					<button
+						className="-mr-2 flex size-12 flex-col items-center justify-center justify-self-end lg:mr-0 transition-all duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-md"
+						onClick={useActive.toggleMenu}
+						aria-label={
+							useActive.isMenuOpen
+								? "Close navigation menu"
+								: "Open navigation menu"
+						}
+						aria-expanded={useActive.isMenuOpen}
+						aria-controls="mobile-menu"
+					>
+						<span className="relative flex size-6 flex-col items-center justify-center">
+							<motion.span
+								className="absolute top-[3px] h-0.5 w-full bg-black"
+								animate={useActive.animateMenu.menu}
+								variants={{
+									open: {
+										width: 0,
+										transition: { duration: 0.1, ease: "easeIn" },
+									},
+									close: {
+										width: "100%",
+										transition: { duration: 0.1, delay: 0.3, ease: "linear" },
+									},
+								}}
+							/>
+							<motion.span
+								className="absolute h-0.5 w-full bg-black"
+								animate={useActive.animateMenu.menu}
+								variants={{
+									open: {
+										rotate: 135,
+										transition: {
+											duration: 0.3,
+											delay: 0.1,
+											ease: "easeInOut",
+										},
+									},
+									close: {
+										rotate: 0,
+										transition: { duration: 0.3, ease: "easeInOut" },
+									},
+									openSecond: {
+										rotate: 45,
+										transition: {
+											duration: 0.3,
+											delay: 0.1,
+											ease: "easeInOut",
+										},
+									},
+									closeSecond: {
+										rotate: 0,
+										transition: { duration: 0.3, ease: "easeInOut" },
+									},
+								}}
+							/>
+							<motion.span
+								className="absolute h-0.5 w-full bg-black"
+								animate={useActive.animateMenu.menu2}
+								variants={{
+									open: {
+										rotate: 135,
+										transition: {
+											duration: 0.3,
+											delay: 0.1,
+											ease: "easeInOut",
+										},
+									},
+									close: {
+										rotate: 0,
+										transition: { duration: 0.3, ease: "easeInOut" },
+									},
+									openSecond: {
+										rotate: 45,
+										transition: {
+											duration: 0.3,
+											delay: 0.1,
+											ease: "easeInOut",
+										},
+									},
+									closeSecond: {
+										rotate: 0,
+										transition: { duration: 0.3, ease: "easeInOut" },
+									},
+								}}
+							/>
+							<motion.span
+								className="absolute bottom-[3px] h-0.5 w-full bg-black"
+								animate={useActive.animateMenu.menu}
+								variants={{
+									open: {
+										width: 0,
+										transition: { duration: 0.1, ease: "easeIn" },
+									},
+									close: {
+										width: "100%",
+										transition: { duration: 0.1, delay: 0.3, ease: "linear" },
+									},
+								}}
+							/>
+						</span>
+					</button>
+				</div>
+			</div>
+			<AnimatePresence>
+				<ConditionalRender condition={useActive.isMenuOpen}>
+					<div
+						id="mobile-menu"
+						className="absolute inset-x-0 top-full h-[calc(100vh-4rem)] w-full overflow-hidden md:h-[calc(100vh-4.5rem)] bg-primary-300"
+						role="navigation"
+						aria-label="Main navigation"
+					>
+						<motion.div
+							variants={{
+								open: { opacity: 1, y: 0 },
+								close: { opacity: 0, y: -20 },
+							}}
+							animate={useActive.animateMenu.menu}
+							initial="close"
+							exit="close"
+							transition={{ duration: 0.4, ease: "easeInOut" }}
+							className="flex h-full flex-col overflow-auto bg-background-primary px-[5%] pt-px"
+						>
+							<div className="grid grid-cols-1 gap-y-12 py-6 md:gap-y-16 md:py-10 lg:my-auto lg:-translate-y-9 lg:grid-cols-[1fr_.75fr] lg:gap-x-20 lg:gap-y-0 lg:py-20">
+								<nav
+									className="grid grid-cols-2 gap-x-10 gap-y-4"
+									aria-label="Primary navigation"
+								>
+									<motion.a
+										href="/"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-3xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{ delay: 0.1 }}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										Home
+									</motion.a>
+									<motion.a
+										href="/residents"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{ delay: 0.15 }}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										Residents
+									</motion.a>
+									<motion.a
+										href="/contact-us"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{ delay: 0.2 }}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										Kontak
+									</motion.a>
+									<motion.a
+										href="/gallery"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{ delay: 0.25 }}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										Galeri
+									</motion.a>
+								</nav>
+								<div className="my-auto">
+									<div className="mt-6 md:mt-8">
+										<h5 className="mb-3 font-semibold md:text-md tracking-wide">
+											Hubungi kami
+										</h5>
+										<a
+											href="tel:+62614567890"
+											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:opacity-70 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+											aria-label="Telepon +62 61 4567 8900"
+										>
+											+62 61 4567 8900
+										</a>
+										<a
+											href="mailto:info@mansyurresidence.com"
+											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:opacity-70 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+											aria-label="Email info@mansyurresidence.com"
+										>
+											info@mansyurresidence.com
+										</a>
+										<p className="text-sm leading-relaxed">
+											Jalan Diponegoro No. 45, Medan, Sumatera Utara
+										</p>
+										<div className="mt-6 flex items-center gap-4 md:mt-8">
+											<a
+												href="#"
+												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												aria-label="Facebook"
+											>
+												<BiLogoFacebook className="size-6" />
+											</a>
+											<a
+												href="#"
+												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												aria-label="Instagram"
+											>
+												<BiLogoInstagram className="size-6" />
+											</a>
+											<a
+												href="#"
+												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												aria-label="Twitter"
+											>
+												<FaXTwitter className="size-6" />
+											</a>
+											<a
+												href="#"
+												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												aria-label="LinkedIn"
+											>
+												<BiLogoLinkedinSquare className="size-6" />
+											</a>
+											<a
+												href="#"
+												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												aria-label="YouTube"
+											>
+												<BiLogoYoutube className="size-6" />
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+					</div>
+				</ConditionalRender>
+			</AnimatePresence>
+		</section>
+	);
+}
+
+export default Navbar;
