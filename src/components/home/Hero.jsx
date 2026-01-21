@@ -48,7 +48,7 @@ export function Hero() {
 		<section
 			ref={useActive.transformRef}
 			id="hero"
-			className="relative flex h-[300vh] flex-col items-center bg-primary-300 text-white"
+			className="relative flex h-[300vh] flex-col items-center bg-gradient-to-br from-primary-200 via-primary-300 to-secondary-200 text-primary-900 mt-16 md:mt-18"
 			aria-label="Hero section"
 		>
 			<div className="px-[5%]">
@@ -58,7 +58,7 @@ export function Hero() {
 						className="space-y-6 md:space-y-8"
 					>
 						<motion.h1
-							className="text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
+							className="text-4xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl bg-gradient-to-r from-primary-800 via-primary-600 to-primary-700 bg-clip-text text-transparent drop-shadow-sm"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, ease: "easeOut" }}
@@ -66,7 +66,7 @@ export function Hero() {
 							Mansyur Residence Medan
 						</motion.h1>
 						<motion.p
-							className="text-base md:text-lg leading-relaxed max-w-xl mx-auto"
+							className="text-base md:text-lg leading-relaxed max-w-xl mx-auto text-primary-800/90"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -87,7 +87,7 @@ export function Hero() {
 							>
 								<Button
 									title="Lihat Residens"
-									className="px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+									className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
 									aria-label="Lihat unit residens yang tersedia"
 								>
 									Lihat Residens
@@ -100,7 +100,7 @@ export function Hero() {
 								<Button
 									title="Unduh Brosur"
 									variant="secondary"
-									className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+									className="px-8 py-4 text-base font-semibold bg-white/80 hover:bg-white text-primary-700 border-2 border-primary-300 hover:border-primary-400 transition-all duration-300 hover:shadow-lg hover:shadow-primary-300/20 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 backdrop-blur-sm"
 									aria-label="Unduh brosur informasi Mansyur Residence"
 								>
 									Unduh Brosur
@@ -116,11 +116,12 @@ export function Hero() {
 					height: useActive.height,
 					y: useActive.y,
 				}}
-				className="sticky top-[10vh] z-10 mb-[-10vh] flex flex-col justify-start overflow-hidden rounded-none md:rounded-lg shadow-2xl"
+				className="sticky top-[10vh] z-10 mb-[-10vh] flex flex-col justify-start overflow-hidden rounded-none md:rounded-2xl shadow-2xl shadow-primary-900/30 ring-1 ring-primary-200/50"
 				initial={{ opacity: 0, scale: 0.95 }}
 				animate={{ opacity: 1, scale: 1 }}
 				transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
 			>
+				<div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent z-10 pointer-events-none" />
 				<motion.img
 					src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop"
 					alt="Luxury modern apartment building with stunning architecture"

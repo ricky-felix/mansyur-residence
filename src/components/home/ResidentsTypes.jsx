@@ -65,7 +65,7 @@ export function ResidentsTypes() {
 									<Button
 										title="Bandingkan"
 										variant="secondary"
-										className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
+										className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
 										aria-label="Bandingkan unit studio dengan unit lainnya"
 									>
 										Bandingkan
@@ -121,7 +121,7 @@ export function ResidentsTypes() {
 									<Button
 										title="Tanya sekarang"
 										variant="secondary"
-										className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
+										className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
 										aria-label="Tanya tentang unit dua kamar"
 									>
 										Tanya sekarang

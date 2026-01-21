@@ -36,12 +36,12 @@ export const CTAGalleryDefaults = {
 	buttons: [
 		{
 			title: "Lihat Residens",
-			className: "bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg",
+			className: "px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg",
 		},
 		{
 			title: "Hubungi Kami",
 			variant: "secondary",
-			className: "bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg",
+			className: "px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg",
 		},
 	],
 };

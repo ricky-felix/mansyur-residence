@@ -1,7 +1,8 @@
 "use client";
 
+import React from "react";
 import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { BiSolidStar } from "react-icons/bi";
 import { RxChevronRight } from "react-icons/rx";
@@ -58,7 +59,7 @@ export function Testimonial(props) {
 						<div className="grid size-full auto-cols-fr grid-cols-1 content-center gap-x-6 gap-y-4">
 							{leftTestimonials.map((leftTestimonial, index) => (
 								<div key={index} className="relative w-full">
-									<TestimonialCard key={index} {...leftTestimonial} />
+									<TestimonialCard testimonial={leftTestimonial} index={index} />
 								</div>
 							))}
 						</div>
@@ -70,7 +71,7 @@ export function Testimonial(props) {
 						<div className="grid size-full auto-cols-fr grid-cols-1 content-center gap-4">
 							{rightTestimonials.map((rightTestimonial, index) => (
 								<div key={index} className="relative w-full">
-									<TestimonialCard key={index} {...rightTestimonial} />
+									<TestimonialCard testimonial={rightTestimonial} index={index} />
 								</div>
 							))}
 						</div>
@@ -81,41 +82,118 @@ export function Testimonial(props) {
 	);
 }
 
-const TestimonialCard = (testimonial) => (
-	<div className="flex w-full flex-col items-start justify-between border border-border-primary p-6 md:p-8">
-		<div className="rb-5 mb-5 md:mb-6">
-			<div className="rb-6 mb-6 flex">
-				{Array(testimonial.numberOfStars)
-					.fill(null)
-					.map((_, starIndex) => (
-						<BiSolidStar key={starIndex} className="mr-1 size-6" />
-					))}
-			</div>
-			<blockquote className="md:text-md">{testimonial.quote}</blockquote>
-		</div>
-		<div className="flex w-full flex-col items-start text-left md:w-fit md:flex-row md:items-center">
-			<img
-				src={testimonial.avatar.src}
-				alt={testimonial.avatar.alt}
-				className="mb-4 size-12 min-h-12 min-w-12 rounded-full object-cover md:mb-0 md:mr-4"
+const TestimonialCard = ({ testimonial, index }) => {
+	const cardRef = React.useRef(null);
+	const isInView = useInView(cardRef, { once: true, margin: "-50px" });
+
+	return (
+		<motion.div
+			ref={cardRef}
+			className="flex w-full flex-col items-start justify-between border border-border-primary p-6 md:p-8 relative overflow-hidden bg-white"
+			initial={{ opacity: 0, y: 30, scale: 0.95 }}
+			animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+			transition={{
+				type: "spring",
+				stiffness: 100,
+				damping: 15,
+				delay: index * 0.1,
+			}}
+			whileHover={{
+				y: -4,
+				boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)",
+				borderColor: "rgba(0, 0, 0, 0.2)",
+				transition: { type: "spring", stiffness: 300, damping: 20 },
+			}}
+		>
+			{/* Background gradient on hover */}
+			<motion.div
+				className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-primary-100/0 -z-10"
+				initial={{ opacity: 0 }}
+				whileHover={{ opacity: 1, transition: { duration: 0.3 } }}
 			/>
-			<div>
-				<p className="font-semibold">{testimonial.name}</p>
-				<p>
-					<span>{testimonial.position}</span>,{" "}
-					<span>{testimonial.companyName}</span>
-				</p>
+
+			<div className="rb-5 mb-5 md:mb-6">
+				<motion.div
+					className="rb-6 mb-6 flex"
+					initial={{ opacity: 0, x: -10 }}
+					animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+					transition={{ delay: index * 0.1 + 0.2, duration: 0.4 }}
+				>
+					{Array(testimonial.numberOfStars)
+						.fill(null)
+						.map((_, starIndex) => (
+							<motion.div
+								key={starIndex}
+								initial={{ opacity: 0, scale: 0 }}
+								animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+								transition={{
+									type: "spring",
+									stiffness: 200,
+									damping: 15,
+									delay: index * 0.1 + 0.3 + starIndex * 0.05,
+								}}
+								whileHover={{
+									scale: 1.2,
+									rotate: 15,
+									transition: { duration: 0.2 },
+								}}
+							>
+								<BiSolidStar className="mr-1 size-6 text-amber-400" />
+							</motion.div>
+						))}
+				</motion.div>
+				<motion.blockquote
+					className="md:text-md leading-relaxed"
+					initial={{ opacity: 0 }}
+					animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+					transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
+				>
+					{testimonial.quote}
+				</motion.blockquote>
 			</div>
-		</div>
-	</div>
-);
+			<motion.div
+				className="flex w-full flex-col items-start text-left md:w-fit md:flex-row md:items-center"
+				initial={{ opacity: 0, y: 10 }}
+				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+				transition={{ delay: index * 0.1 + 0.5, duration: 0.4 }}
+			>
+				<motion.img
+					src={testimonial.avatar.src}
+					alt={testimonial.avatar.alt}
+					className="mb-4 size-12 min-h-12 min-w-12 rounded-full object-cover md:mb-0 md:mr-4 border-2 border-primary-200"
+					whileHover={{
+						scale: 1.1,
+						borderColor: "rgba(0, 0, 0, 0.3)",
+						transition: { duration: 0.3 },
+					}}
+				/>
+				<div>
+					<p className="font-semibold">{testimonial.name}</p>
+					<p className="text-sm opacity-70">
+						<span>{testimonial.position}</span>,{" "}
+						<span>{testimonial.companyName}</span>
+					</p>
+				</div>
+			</motion.div>
+
+			{/* Decorative corner accent */}
+			<motion.div
+				className="absolute top-0 right-0 w-20 h-20 bg-primary-500/5"
+				initial={{ scale: 0, rotate: 0 }}
+				animate={isInView ? { scale: 1, rotate: 45 } : { scale: 0, rotate: 0 }}
+				transition={{ delay: index * 0.1 + 0.6, duration: 0.5 }}
+				style={{ transformOrigin: "top right" }}
+			/>
+		</motion.div>
+	);
+};
 
 export const TestimonialDefaults = {
 	heading: "Customer testimonials",
 	description:
 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
 	buttons: [
-		{ title: "Button", variant: "secondary", className: "bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg" },
+		{ title: "Button", variant: "secondary", className: "px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg" },
 		{
 			title: "Button",
 			variant: "link",

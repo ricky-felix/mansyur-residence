@@ -81,23 +81,23 @@ export function Navbar() {
 	return (
 		<section
 			id="navbar"
-			className="relative z-[999] flex min-h-16 w-full items-center border-b border-b-border-primary bg-background-primary px-[5%] md:min-h-18 transition-all duration-300 bg-primary-300 outline-none"
+			className="fixed top-0 left-0 right-0 z-[999] flex min-h-16 w-full items-center border-b border-b-white/20 px-[5%] md:min-h-18 transition-all duration-300 glass-morphism shadow-lg shadow-primary-500/10 outline-none"
 		>
 			<div className="mx-auto flex size-full items-center justify-between">
 				<a
 					href="/"
-					className="transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+					className="transition-all duration-300 hover:scale-105 hover:drop-shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 					aria-label="Mansyur Residence Home"
 				>
 					<img
 						src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
 						alt="Mansyur Residence Logo"
-						className="h-8 md:h-10 w-auto"
+						className="h-8 md:h-10 w-auto drop-shadow-sm"
 					/>
 				</a>
 				<div className="flex items-center justify-center gap-2 lg:gap-4">
 					<button
-						className="flex size-12 flex-col items-center justify-center justify-self-end transition-all duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-md"
+						className="flex size-12 flex-col items-center justify-center justify-self-end transition-all duration-200 hover:bg-primary-100/50 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-md"
 						onClick={useActive.toggleMenu}
 						aria-label={
 							useActive.isMenuOpen
@@ -109,7 +109,7 @@ export function Navbar() {
 					>
 						<span className="relative flex size-6 flex-col items-center justify-center">
 							<motion.span
-								className="absolute top-[3px] h-0.5 w-full bg-black"
+								className="absolute top-[3px] h-0.5 w-full bg-primary-700"
 								animate={useActive.animateMenu.menu}
 								variants={{
 									open: {
@@ -123,7 +123,7 @@ export function Navbar() {
 								}}
 							/>
 							<motion.span
-								className="absolute h-0.5 w-full bg-black"
+								className="absolute h-0.5 w-full bg-primary-700"
 								animate={useActive.animateMenu.menu}
 								variants={{
 									open: {
@@ -153,7 +153,7 @@ export function Navbar() {
 								}}
 							/>
 							<motion.span
-								className="absolute h-0.5 w-full bg-black"
+								className="absolute h-0.5 w-full bg-primary-700"
 								animate={useActive.animateMenu.menu2}
 								variants={{
 									open: {
@@ -183,7 +183,7 @@ export function Navbar() {
 								}}
 							/>
 							<motion.span
-								className="absolute bottom-[3px] h-0.5 w-full bg-black"
+								className="absolute bottom-[3px] h-0.5 w-full bg-primary-700"
 								animate={useActive.animateMenu.menu}
 								variants={{
 									open: {
@@ -204,7 +204,7 @@ export function Navbar() {
 				<ConditionalRender condition={useActive.isMenuOpen}>
 					<div
 						id="mobile-menu"
-						className="fixed inset-0 top-16 md:top-[4.5rem] w-full h-[calc(100vh-4rem)] md:h-[calc(100vh-4.5rem)] overflow-hidden bg-primary-300 z-[998]"
+						className="fixed inset-0 top-16 md:top-[4.5rem] w-full h-[calc(100vh-4rem)] md:h-[calc(100vh-4.5rem)] overflow-hidden bg-gradient-to-br from-primary-200 via-primary-300 to-secondary-200 z-[998]"
 						role="navigation"
 						aria-label="Main navigation"
 					>
@@ -217,7 +217,7 @@ export function Navbar() {
 							initial="close"
 							exit="close"
 							transition={{ duration: 0.4, ease: "easeInOut" }}
-							className="flex h-full flex-col overflow-auto bg-primary-300 px-[5%] pt-px"
+							className="flex h-full flex-col overflow-auto px-[5%] pt-px"
 						>
 							<div className="grid grid-cols-1 gap-y-12 py-6 md:gap-y-16 md:py-10 lg:my-auto lg:-translate-y-9 lg:grid-cols-[1fr_.75fr] lg:gap-x-20 lg:gap-y-0 lg:py-20">
 								<nav
@@ -226,7 +226,7 @@ export function Navbar() {
 								>
 									<motion.a
 										href="/"
-										className="py-3 text-2xl font-bold leading-[1.2] md:text-3xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-3xl lg:text-5xl transition-all duration-300 hover:text-primary-600 hover:translate-x-2 hover:drop-shadow-md focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-500 rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}
 										transition={{ delay: 0.1 }}
@@ -237,7 +237,7 @@ export function Navbar() {
 									</motion.a>
 									<motion.a
 										href="/resident"
-										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:text-primary-600 hover:translate-x-2 hover:drop-shadow-md focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-500 rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}
 										transition={{ delay: 0.15 }}
@@ -248,7 +248,7 @@ export function Navbar() {
 									</motion.a>
 									<motion.a
 										href="/kontak"
-										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:text-primary-600 hover:translate-x-2 hover:drop-shadow-md focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-500 rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}
 										transition={{ delay: 0.2 }}
@@ -259,7 +259,7 @@ export function Navbar() {
 									</motion.a>
 									<motion.a
 										href="/gallery"
-										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
+										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:text-primary-600 hover:translate-x-2 hover:drop-shadow-md focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-500 rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}
 										transition={{ delay: 0.25 }}
@@ -270,59 +270,59 @@ export function Navbar() {
 									</motion.a>
 								</nav>
 								<div className="my-auto">
-									<div className="mt-6 md:mt-8">
-										<h5 className="mb-3 font-semibold md:text-md tracking-wide">
+									<div className="mt-6 md:mt-8 bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-white/50 shadow-lg">
+										<h5 className="mb-3 font-semibold md:text-md tracking-wide text-primary-800">
 											Hubungi kami
 										</h5>
 										<a
 											href="tel:+62614567890"
-											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:opacity-70 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:text-primary-600 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 											aria-label="Telepon +62 61 4567 8900"
 										>
 											+62 61 4567 8900
 										</a>
 										<a
 											href="mailto:info@mansyurresidence.com"
-											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:opacity-70 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:text-primary-600 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 											aria-label="Email info@mansyurresidence.com"
 										>
 											info@mansyurresidence.com
 										</a>
-										<p className="text-sm leading-relaxed">
+										<p className="text-sm leading-relaxed text-primary-900">
 											Jalan Diponegoro No. 45, Medan, Sumatera Utara
 										</p>
 										<div className="mt-6 flex items-center gap-4 md:mt-8">
 											<a
 												href="#"
-												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Facebook"
 											>
 												<BiLogoFacebook className="size-6" />
 											</a>
 											<a
 												href="#"
-												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Instagram"
 											>
 												<BiLogoInstagram className="size-6" />
 											</a>
 											<a
 												href="#"
-												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Twitter"
 											>
 												<FaXTwitter className="size-6" />
 											</a>
 											<a
 												href="#"
-												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="LinkedIn"
 											>
 												<BiLogoLinkedinSquare className="size-6" />
 											</a>
 											<a
 												href="#"
-												className="transition-all duration-200 hover:scale-110 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
+												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="YouTube"
 											>
 												<BiLogoYoutube className="size-6" />

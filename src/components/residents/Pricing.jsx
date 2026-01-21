@@ -11,6 +11,93 @@ import React, { useRef } from "react";
 import { BiCheck } from "react-icons/bi";
 import { motion, useInView } from "framer-motion";
 
+// Pricing card component with animations
+const PricingCard = ({ title, price, features, buttonText, delay = 0, isInView }) => (
+	<motion.div
+		className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm relative overflow-hidden"
+		initial={{ opacity: 0, y: 30 }}
+		animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+		transition={{ duration: 0.6, delay, ease: "easeOut" }}
+		whileHover={{
+			y: -6,
+			boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+			borderColor: "rgba(0, 0, 0, 0.3)",
+			transition: { type: "spring", stiffness: 300, damping: 20 },
+		}}
+	>
+		{/* Background gradient on hover */}
+		<motion.div
+			className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-primary-100/0 -z-10"
+			initial={{ opacity: 0 }}
+			whileHover={{ opacity: 1, transition: { duration: 0.3 } }}
+		/>
+
+		<div>
+			<motion.div
+				className="mb-8 text-center md:mb-10"
+				initial={{ opacity: 0, y: 20 }}
+				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+				transition={{ duration: 0.5, delay: delay + 0.1 }}
+			>
+				<h6 className="mb-4 text-xl font-bold leading-[1.3] tracking-[-0.01em] md:text-2xl">
+					{title}
+				</h6>
+				<motion.h1
+					className="my-4 text-3xl font-bold leading-[1] tracking-[-0.03em] md:text-4xl lg:text-5xl"
+					whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+				>
+					{price}
+				</motion.h1>
+			</motion.div>
+			<div className="mb-10 grid grid-cols-1 gap-5 py-2">
+				{features.map((feature, idx) => (
+					<motion.div
+						key={idx}
+						className="flex self-start gap-4"
+						initial={{ opacity: 0, x: -20 }}
+						animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+						transition={{ duration: 0.4, delay: delay + 0.2 + idx * 0.1 }}
+					>
+						<motion.div
+							className="flex-none self-start"
+							whileHover={{ scale: 1.2, rotate: 360 }}
+							transition={{ duration: 0.4 }}
+						>
+							<BiCheck className="size-7 text-green-600" />
+						</motion.div>
+						<p className="text-base leading-[1.6] tracking-[-0.01em]">
+							{feature}
+						</p>
+					</motion.div>
+				))}
+			</div>
+		</div>
+		<div>
+			<motion.div
+				whileHover={{ scale: 1.02 }}
+				whileTap={{ scale: 0.98 }}
+			>
+				<Button
+					title={buttonText}
+					className="w-full px-6 py-4 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
+					aria-label={buttonText}
+				>
+					{buttonText}
+				</Button>
+			</motion.div>
+		</div>
+
+		{/* Decorative corner accent */}
+		<motion.div
+			className="absolute top-0 right-0 w-20 h-20 bg-primary-500/5"
+			initial={{ scale: 0, rotate: 0 }}
+			animate={isInView ? { scale: 1, rotate: 45 } : { scale: 0, rotate: 0 }}
+			transition={{ delay: delay + 0.6, duration: 0.5 }}
+			style={{ transformOrigin: "top right" }}
+		/>
+	</motion.div>
+);
+
 export function Pricing() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -64,257 +151,63 @@ export function Pricing() {
 							value="monthly"
 							className="grid grid-cols-1 gap-10 data-[state=active]:animate-tabs md:grid-cols-2"
 						>
-							<div className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-								<div>
-									<div className="mb-8 text-center md:mb-10">
-										<h6 className="mb-4 text-xl font-bold leading-[1.3] tracking-[-0.01em] md:text-2xl">
-											Studio langsung
-										</h6>
-										<h1 className="my-4 text-3xl font-bold leading-[1] tracking-[-0.03em] md:text-4xl lg:text-5xl">
-											Rp500jt
-										</h1>
-									</div>
-									<div className="mb-10 grid grid-cols-1 gap-5 py-2">
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Luas 25-35 meter persegi
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Sistem keamanan pintar terintegrasi
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Kontrol suara dan aplikasi mobile
-											</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<motion.div
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										<Button
-											title="Hubungi kami"
-											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
-											aria-label="Hubungi kami untuk informasi lebih lanjut"
-										>
-											Hubungi kami
-										</Button>
-									</motion.div>
-								</div>
-							</div>
-							<div className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-								<div>
-									<div className="mb-8 text-center md:mb-10">
-										<h6 className="mb-4 text-xl font-bold leading-[1.3] tracking-[-0.01em] md:text-2xl">
-											Studio cicilan
-										</h6>
-										<h1 className="my-4 text-3xl font-bold leading-[1] tracking-[-0.03em] md:text-4xl lg:text-5xl">
-											Rp25jt
-										</h1>
-									</div>
-									<div className="mb-10 grid grid-cols-1 gap-5 py-2">
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Cicilan 20 tahun tersedia
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Bunga kompetitif dengan bank partner
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Proses persetujuan cepat dan mudah
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Dukungan tim finansial profesional
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Fleksibilitas pembayaran sesuai kebutuhan
-											</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<motion.div
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										<Button
-											title="Ajukan sekarang"
-											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
-											aria-label="Ajukan permohonan sekarang"
-										>
-											Ajukan sekarang
-										</Button>
-									</motion.div>
-								</div>
-							</div>
+							<PricingCard
+								title="Studio langsung"
+								price="Rp500jt"
+								features={[
+									"Luas 25-35 meter persegi",
+									"Sistem keamanan pintar terintegrasi",
+									"Kontrol suara dan aplikasi mobile",
+								]}
+								buttonText="Hubungi kami"
+								delay={0.4}
+								isInView={isInView}
+							/>
+							<PricingCard
+								title="Studio cicilan"
+								price="Rp25jt"
+								features={[
+									"Cicilan 20 tahun tersedia",
+									"Bunga kompetitif dengan bank partner",
+									"Proses persetujuan cepat dan mudah",
+									"Dukungan tim finansial profesional",
+									"Fleksibilitas pembayaran sesuai kebutuhan",
+								]}
+								buttonText="Ajukan sekarang"
+								delay={0.5}
+								isInView={isInView}
+							/>
 						</TabsContent>
 						<TabsContent
 							value="yearly"
 							className="grid grid-cols-1 gap-10 data-[state=active]:animate-tabs md:grid-cols-2"
 						>
-							<div className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-								<div>
-									<div className="mb-8 text-center md:mb-10">
-										<h6 className="mb-4 text-xl font-bold leading-[1.3] tracking-[-0.01em] md:text-2xl">
-											Dua kamar tunai
-										</h6>
-										<h1 className="my-4 text-3xl font-bold leading-[1] tracking-[-0.03em] md:text-4xl lg:text-5xl">
-											Rp850jt
-										</h1>
-										<p className="mt-4 text-base font-medium leading-[1.6] tracking-[-0.01em]">
-											Hemat dengan pembayaran penuh
-										</p>
-									</div>
-									<div className="mb-10 grid grid-cols-1 gap-5 py-2">
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Luas 55-75 meter persegi
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Dua kamar mandi lengkap
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Balkon luas dengan pemandangan kota
-											</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<motion.div
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										<Button
-											title="Hubungi kami"
-											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
-											aria-label="Hubungi kami untuk informasi lebih lanjut"
-										>
-											Hubungi kami
-										</Button>
-									</motion.div>
-								</div>
-							</div>
-							<div className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-								<div>
-									<div className="mb-8 text-center md:mb-10">
-										<h6 className="mb-4 text-xl font-bold leading-[1.3] tracking-[-0.01em] md:text-2xl">
-											Dua kamar cicilan
-										</h6>
-										<h1 className="my-4 text-3xl font-bold leading-[1] tracking-[-0.03em] md:text-4xl lg:text-5xl">
-											Rp42jt
-										</h1>
-										<p className="mt-4 text-base font-medium leading-[1.6] tracking-[-0.01em]">
-											Cicilan 20 tahun tersedia
-										</p>
-									</div>
-									<div className="mb-10 grid grid-cols-1 gap-5 py-2">
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Bunga kompetitif dengan bank partner
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Proses persetujuan cepat dan mudah
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Dukungan tim finansial profesional
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Fleksibilitas pembayaran sesuai kebutuhan
-											</p>
-										</div>
-										<div className="flex self-start gap-4">
-											<div className="flex-none self-start">
-												<BiCheck className="size-7" />
-											</div>
-											<p className="text-base leading-[1.6] tracking-[-0.01em]">
-												Bonus asuransi properti tahun pertama
-											</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<motion.div
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										<Button
-											title="Ajukan sekarang"
-											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
-											aria-label="Ajukan permohonan sekarang"
-										>
-											Ajukan sekarang
-										</Button>
-									</motion.div>
-								</div>
-							</div>
+							<PricingCard
+								title="Dua kamar tunai"
+								price="Rp850jt"
+								features={[
+									"Luas 55-75 meter persegi",
+									"Dua kamar mandi lengkap",
+									"Balkon luas dengan pemandangan kota",
+								]}
+								buttonText="Hubungi kami"
+								delay={0.4}
+								isInView={isInView}
+							/>
+							<PricingCard
+								title="Dua kamar cicilan"
+								price="Rp42jt"
+								features={[
+									"Bunga kompetitif dengan bank partner",
+									"Proses persetujuan cepat dan mudah",
+									"Dukungan tim finansial profesional",
+									"Fleksibilitas pembayaran sesuai kebutuhan",
+									"Bonus asuransi properti tahun pertama",
+								]}
+								buttonText="Ajukan sekarang"
+								delay={0.5}
+								isInView={isInView}
+							/>
 						</TabsContent>
 					</Tabs>
 				</motion.div>

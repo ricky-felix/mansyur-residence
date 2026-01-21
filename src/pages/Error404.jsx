@@ -72,7 +72,7 @@ function Error404() {
 								<Link to="/">
 									<Button
 										title="Beranda"
-										className="bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
+										className="px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 										aria-label="Kembali ke halaman beranda"
 									>
 										Beranda
@@ -84,7 +84,7 @@ function Error404() {
 									<Button
 										title="Residents"
 										variant="secondary"
-										className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
+										className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 										aria-label="Jelajahi halaman residents"
 									>
 										Residents
