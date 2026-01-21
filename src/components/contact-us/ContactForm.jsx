@@ -21,7 +21,7 @@ import { RxChevronRight } from "react-icons/rx";
 export function ContactForm() {
 	return (
 		<section
-			id="relume"
+			id="contact-form"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-primary-200"
 		>
 			<div className="container mx-auto">
@@ -123,7 +123,7 @@ export function ContactForm() {
 							</Label>
 						</div>
 						<div>
-							<Button title="Kirim">Kirim</Button>
+							<Button title="Kirim" className="bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg">Kirim</Button>
 						</div>
 					</form>
 					<div className="mb-auto grid gap-x-4 gap-y-10 py-2 sm:grid-cols-2">
@@ -165,6 +165,7 @@ export function ContactForm() {
 									variant="link"
 									size="link"
 									iconRight={<RxChevronRight />}
+									className="text-primary-600 hover:text-primary-700"
 								>
 									Lihat lokasi
 								</Button>

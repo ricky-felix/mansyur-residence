@@ -10,7 +10,7 @@ export function CTAContactUs() {
 
 	return (
 		<section
-			id="relume"
+			id="cta-contact"
 			className="px-[5%] py-24 md:py-32 lg:py-40 bg-primary-300"
 			ref={ref}
 			aria-labelledby="cta-contact-heading"
@@ -51,7 +51,7 @@ export function CTAContactUs() {
 					<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 						<Button
 							title="Hubungi"
-							className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+							className="bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 							aria-label="Hubungi tim penjualan kami"
 						>
 							Hubungi
@@ -61,7 +61,7 @@ export function CTAContactUs() {
 						<Button
 							title="Unduh"
 							variant="secondary"
-							className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+							className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 							aria-label="Unduh brosur Mansyur Residence"
 						>
 							Unduh

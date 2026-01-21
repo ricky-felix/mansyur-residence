@@ -13,7 +13,7 @@ import { FaXTwitter } from "react-icons/fa6";
 export function Footer() {
 	return (
 		<footer
-			id="relume"
+			id="footer"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-primary-700 text-white"
 		>
 			<div className="container mx-auto">
@@ -28,13 +28,13 @@ export function Footer() {
 						</p>
 					</div>
 					<div className="mt-8 flex flex-wrap gap-5 md:mt-10 lg:mt-0 lg:flex-nowrap">
-						<Button title="Jadwalkan" className="text-base px-8 py-6">
+						<Button title="Jadwalkan" className="text-base px-8 py-6 bg-primary-500 hover:bg-primary-400 text-white transition-all duration-300 hover:shadow-lg">
 							Jadwalkan
 						</Button>
 						<Button
 							title="Unduh"
 							variant="secondary"
-							className="text-base px-8 py-6"
+							className="text-base px-8 py-6 bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg"
 						>
 							Unduh
 						</Button>
@@ -128,36 +128,24 @@ export function Footer() {
 						</h2>
 						<ul className="space-y-3">
 							<li>
-								<a
-									href="/#amenities"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
-								>
+								<span className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80">
 									Kolam Infinity
-								</a>
+								</span>
 							</li>
 							<li>
-								<a
-									href="/#amenities"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
-								>
+								<span className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80">
 									Pusat Kebugaran
-								</a>
+								</span>
 							</li>
 							<li>
-								<a
-									href="/#amenities"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
-								>
+								<span className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80">
 									Sky Lounge
-								</a>
+								</span>
 							</li>
 							<li>
-								<a
-									href="/#amenities"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
-								>
+								<span className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80">
 									Parkir Pintar
-								</a>
+								</span>
 							</li>
 						</ul>
 					</div>

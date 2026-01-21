@@ -47,7 +47,7 @@ export function Hero() {
 	return (
 		<section
 			ref={useActive.transformRef}
-			id="relume"
+			id="hero"
 			className="relative flex h-[300vh] flex-col items-center bg-primary-300 text-white"
 			aria-label="Hero section"
 		>
@@ -87,7 +87,7 @@ export function Hero() {
 							>
 								<Button
 									title="Lihat Residens"
-									className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+									className="px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 									aria-label="Lihat unit residens yang tersedia"
 								>
 									Lihat Residens
@@ -100,7 +100,7 @@ export function Hero() {
 								<Button
 									title="Unduh Brosur"
 									variant="secondary"
-									className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+									className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 									aria-label="Unduh brosur informasi Mansyur Residence"
 								>
 									Unduh Brosur

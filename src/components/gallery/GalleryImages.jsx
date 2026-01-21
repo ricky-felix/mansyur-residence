@@ -5,12 +5,12 @@ export function GalleryImages(props) {
 	};
 	return (
 		<section
-			id="relume"
+			id="gallery"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-secondary-200"
 		>
 			<div className="container mx-auto">
 				<div className="mb-12 text-center md:mb-18 lg:mb-20">
-					<h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-7xl">
+					<h2 className="mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
 						{heading}
 					</h2>
 					<p className="md:text-md">{description}</p>

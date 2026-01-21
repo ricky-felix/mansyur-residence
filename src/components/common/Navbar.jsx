@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
 	BiLogoFacebook,
@@ -36,6 +36,18 @@ const useRelume = () => {
 		return `hidden lg:items-center lg:justify-center lg:overflow-hidden lg:px-0 lg:text-center ${!isMenuOpen ? "lg:flex" : ""}`;
 	};
 
+	// Prevent body scroll when menu is open
+	useEffect(() => {
+		if (isMenuOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [isMenuOpen]);
+
 	// Smooth scroll handler with accessibility
 	const handleSmoothScroll = (e, targetId) => {
 		e.preventDefault();
@@ -68,12 +80,12 @@ export function Navbar() {
 	const useActive = useRelume();
 	return (
 		<section
-			id="relume"
+			id="navbar"
 			className="relative z-[999] flex min-h-16 w-full items-center border-b border-b-border-primary bg-background-primary px-[5%] md:min-h-18 transition-all duration-300 bg-primary-300 outline-none"
 		>
 			<div className="mx-auto flex size-full items-center justify-between">
 				<a
-					href="#"
+					href="/"
 					className="transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
 					aria-label="Mansyur Residence Home"
 				>
@@ -85,7 +97,7 @@ export function Navbar() {
 				</a>
 				<div className="flex items-center justify-center gap-2 lg:gap-4">
 					<button
-						className="-mr-2 flex size-12 flex-col items-center justify-center justify-self-end lg:mr-0 transition-all duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-md"
+						className="flex size-12 flex-col items-center justify-center justify-self-end transition-all duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-md"
 						onClick={useActive.toggleMenu}
 						aria-label={
 							useActive.isMenuOpen
@@ -192,7 +204,7 @@ export function Navbar() {
 				<ConditionalRender condition={useActive.isMenuOpen}>
 					<div
 						id="mobile-menu"
-						className="absolute inset-x-0 top-full h-[calc(100vh-4rem)] w-full overflow-hidden md:h-[calc(100vh-4.5rem)] bg-primary-300"
+						className="fixed inset-0 top-16 md:top-[4.5rem] w-full h-[calc(100vh-4rem)] md:h-[calc(100vh-4.5rem)] overflow-hidden bg-primary-300 z-[998]"
 						role="navigation"
 						aria-label="Main navigation"
 					>
@@ -205,7 +217,7 @@ export function Navbar() {
 							initial="close"
 							exit="close"
 							transition={{ duration: 0.4, ease: "easeInOut" }}
-							className="flex h-full flex-col overflow-auto bg-background-primary px-[5%] pt-px"
+							className="flex h-full flex-col overflow-auto bg-primary-300 px-[5%] pt-px"
 						>
 							<div className="grid grid-cols-1 gap-y-12 py-6 md:gap-y-16 md:py-10 lg:my-auto lg:-translate-y-9 lg:grid-cols-[1fr_.75fr] lg:gap-x-20 lg:gap-y-0 lg:py-20">
 								<nav
@@ -224,7 +236,7 @@ export function Navbar() {
 										Home
 									</motion.a>
 									<motion.a
-										href="/residents"
+										href="/resident"
 										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}
@@ -235,7 +247,7 @@ export function Navbar() {
 										Residents
 									</motion.a>
 									<motion.a
-										href="/contact-us"
+										href="/kontak"
 										className="py-3 text-2xl font-bold leading-[1.2] md:text-4xl lg:text-5xl transition-all duration-300 hover:opacity-70 hover:translate-x-2 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black rounded-sm"
 										initial={{ opacity: 0, x: -20 }}
 										animate={{ opacity: 1, x: 0 }}

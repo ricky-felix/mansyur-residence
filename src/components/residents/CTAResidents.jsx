@@ -10,8 +10,8 @@ export function CTAResidents() {
 
 	return (
 		<section
-			id="relume"
-			className="px-[5%] py-24 md:py-32 lg:py-40 bg-primary-300"
+			id="cta-residents"
+			className="px-[5%] py-24 md:py-32 lg:py-40 bg-primary-300 text-white"
 			ref={ref}
 			aria-labelledby="cta-residents-heading"
 		>
@@ -50,7 +50,7 @@ export function CTAResidents() {
 					<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 						<Button
 							title="Studio"
-							className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+							className="bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 							aria-label="Lihat unit tipe Studio"
 						>
 							Studio
@@ -60,7 +60,7 @@ export function CTAResidents() {
 						<Button
 							title="2 Kamar"
 							variant="secondary"
-							className="transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+							className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 							aria-label="Lihat unit tipe 2 Kamar"
 						>
 							2 Kamar

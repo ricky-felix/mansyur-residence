@@ -7,12 +7,12 @@ export function CTAGallery(props) {
 	};
 	return (
 		<section
-			id="relume"
+			id="cta-gallery"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-primary-300 text-white text-center"
 		>
 			<div className="container mx-auto max-w-lg text-center">
 				<p className="mb-3 font-semibold md:mb-4">{tagline}</p>
-				<h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-8xl text-center">
+				<h1 className="mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl text-center">
 					{heading}
 				</h1>
 				<p className="md:text-md">{description}</p>
@@ -36,10 +36,12 @@ export const CTAGalleryDefaults = {
 	buttons: [
 		{
 			title: "Lihat Residens",
+			className: "bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg",
 		},
 		{
 			title: "Hubungi Kami",
 			variant: "secondary",
+			className: "bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg",
 		},
 	],
 };

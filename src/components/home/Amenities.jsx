@@ -6,7 +6,7 @@ import { RxChevronRight } from "react-icons/rx";
 
 export function Amenities() {
 	return (
-		<section id="relume" className="px-[5%] py-24 md:py-32 lg:py-40">
+		<section id="amenities" className="px-[5%] py-24 md:py-32 lg:py-40">
 			<div className="container mx-auto">
 				<div className="mx-auto mb-16 w-full max-w-2xl text-center md:mb-20 lg:mb-24">
 					<p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] opacity-60 md:mb-5">Fasilitas</p>
@@ -39,6 +39,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Jelajahi
 									</Button>
@@ -60,6 +61,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Lihat
 									</Button>
@@ -88,6 +90,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Lihat
 									</Button>
@@ -120,6 +123,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Lihat
 									</Button>
@@ -150,6 +154,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Lihat
 									</Button>
@@ -169,6 +174,7 @@ export function Amenities() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
+										className="text-primary-600 hover:text-primary-700"
 									>
 										Lihat
 									</Button>

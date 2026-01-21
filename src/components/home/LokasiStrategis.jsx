@@ -5,7 +5,7 @@ import React, { Fragment } from "react";
 export function LokasiStrategis() {
 	return (
 		<section
-			id="relume"
+			id="location"
 			className="overflow-hidden px-[5%] py-24 md:py-32 lg:py-40 bg-secondary-200"
 		>
 			<div className="container mx-auto">
@@ -150,7 +150,7 @@ export function LokasiStrategis() {
 							</div>
 						</Fragment>
 					</div>
-					<div className="absolute right-0 z-0 h-1 w-16 bg-gradient-to-r from-transparent to-white" />
+					<div className="absolute right-0 z-0 h-1 w-16 bg-gradient-to-r from-transparent to-white hidden md:block" />
 				</div>
 			</div>
 		</section>

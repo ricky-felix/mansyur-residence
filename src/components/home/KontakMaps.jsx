@@ -12,7 +12,7 @@ export function KontakMaps() {
 
 	return (
 		<section
-			id="relume"
+			id="contact"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-primary-700 text-white"
 			ref={ref}
 		>
@@ -112,7 +112,7 @@ export function KontakMaps() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
-										className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+										className="text-primary-100 hover:text-primary-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 										aria-label="Dapatkan arah ke Mansyur Residence"
 									>
 										Dapatkan arah
@@ -121,25 +121,24 @@ export function KontakMaps() {
 							</div>
 						</motion.div>
 					</div>
-					<motion.a
-						href="#"
-						className="justify-self-end md:w-[321.6px] lg:w-auto overflow-hidden rounded-lg group"
+					<motion.div
+						className="w-full overflow-hidden rounded-lg"
 						initial={{ opacity: 0, scale: 0.95 }}
 						animate={
 							isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }
 						}
 						transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-						whileHover={{ scale: 1.02 }}
-						aria-label="Lihat peta lokasi Mansyur Residence"
 					>
-						<motion.img
-							src="https://relume-assets.s3.us-east-1.amazonaws.com/placeholder-map-image.svg"
-							alt="Peta lokasi Mansyur Residence"
-							className="size-full h-[400px] object-cover md:h-[516px]"
-							whileHover={{ scale: 1.05 }}
-							transition={{ duration: 0.5 }}
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.0176876408453!2d98.6567891!3d3.5851399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312f6c48c6e25b%3A0x21d48a8b5c8e8b1b!2sJl.%20Dr.%20Mansyur%2C%20Medan!5e0!3m2!1sen!2sid!4v1705000000000!5m2!1sen!2sid"
+							style={{ border: 0 }}
+							allowFullScreen=""
+							loading="lazy"
+							referrerPolicy="no-referrer-when-downgrade"
+							title="Lokasi Mansyur Residence"
+							className="w-full h-[300px] sm:h-[350px] md:h-[450px] lg:h-[500px]"
 						/>
-					</motion.a>
+					</motion.div>
 				</div>
 			</div>
 		</section>

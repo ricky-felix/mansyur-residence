@@ -17,7 +17,7 @@ export function Pricing() {
 
 	return (
 		<section
-			id="relume"
+			id="pricing"
 			className="px-[5%] py-24 md:py-32 lg:py-40 bg-secondary-200"
 			ref={ref}
 			aria-labelledby="pricing-heading"
@@ -108,7 +108,7 @@ export function Pricing() {
 									>
 										<Button
 											title="Hubungi kami"
-											className="w-full text-base py-6 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 											aria-label="Hubungi kami untuk informasi lebih lanjut"
 										>
 											Hubungi kami
@@ -176,7 +176,7 @@ export function Pricing() {
 									>
 										<Button
 											title="Ajukan sekarang"
-											className="w-full text-base py-6 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 											aria-label="Ajukan permohonan sekarang"
 										>
 											Ajukan sekarang
@@ -236,7 +236,7 @@ export function Pricing() {
 									>
 										<Button
 											title="Hubungi kami"
-											className="w-full text-base py-6 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 											aria-label="Hubungi kami untuk informasi lebih lanjut"
 										>
 											Hubungi kami
@@ -307,7 +307,7 @@ export function Pricing() {
 									>
 										<Button
 											title="Ajukan sekarang"
-											className="w-full text-base py-6 transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+											className="w-full text-base py-6 bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300"
 											aria-label="Ajukan permohonan sekarang"
 										>
 											Ajukan sekarang

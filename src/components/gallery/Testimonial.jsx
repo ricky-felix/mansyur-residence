@@ -30,14 +30,14 @@ export function Testimonial(props) {
 
 	return (
 		<section
-			id="relume"
+			id="testimonials"
 			ref={sectionRef}
 			className="overflow-hidden px-[5%] py-12 md:py-16 lg:py-20"
 		>
 			<div className="container mx-auto grid min-h-svh auto-cols-fr grid-cols-1 overflow-hidden border border-border-primary lg:h-[90vh] lg:min-h-[auto] lg:grid-cols-[0.75fr_1fr] lg:overflow-visible">
 				<div className="flex flex-col justify-center p-8 md:p-12">
 					<div>
-						<h2 className="rb-5 mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-7xl">
+						<h2 className="rb-5 mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
 							{heading}
 						</h2>
 						<p className="md:text-md">{description}</p>
@@ -115,12 +115,13 @@ export const TestimonialDefaults = {
 	description:
 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
 	buttons: [
-		{ title: "Button", variant: "secondary" },
+		{ title: "Button", variant: "secondary", className: "bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg" },
 		{
 			title: "Button",
 			variant: "link",
 			size: "link",
 			iconRight: <RxChevronRight />,
+			className: "text-primary-600 hover:text-primary-700",
 		},
 	],
 	leftTestimonials: [

@@ -10,7 +10,7 @@ export function Comparison() {
 
 	return (
 		<section
-			id="relume"
+			id="comparison"
 			className="px-[5%] py-24 md:py-32 lg:py-40 bg-primary-200"
 			ref={ref}
 			aria-labelledby="comparison-heading"

@@ -18,7 +18,7 @@ const statVariants = {
 
 export function Stats() {
 	return (
-		<section id="relume" className="px-[5%] py-24 md:py-32 lg:py-40">
+		<section id="stats" className="px-[5%] py-24 md:py-32 lg:py-40">
 			<div className="container mx-auto">
 				<div className="mb-20 grid grid-cols-1 gap-y-10 md:mb-24 md:grid-cols-2 md:gap-x-20 lg:mb-28 lg:gap-x-28 items-center">
 					<div>

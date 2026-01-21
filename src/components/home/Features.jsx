@@ -37,7 +37,7 @@ export function Features() {
 
 	return (
 		<section
-			id="relume"
+			id="features"
 			className="px-[5%] py-24 md:py-32 lg:py-40 bg-primary-200"
 		>
 			<div className="container mx-auto">

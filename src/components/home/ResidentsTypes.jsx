@@ -11,7 +11,7 @@ export function ResidentsTypes() {
 
 	return (
 		<section
-			id="relume"
+			id="residents"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-secondary-200"
 			ref={ref}
 		>
@@ -65,7 +65,7 @@ export function ResidentsTypes() {
 									<Button
 										title="Bandingkan"
 										variant="secondary"
-										className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
+										className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
 										aria-label="Bandingkan unit studio dengan unit lainnya"
 									>
 										Bandingkan
@@ -80,7 +80,7 @@ export function ResidentsTypes() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
-										className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+										className="text-primary-600 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
 										aria-label="Lihat tur virtual unit studio"
 									>
 										Tur virtual
@@ -121,7 +121,7 @@ export function ResidentsTypes() {
 									<Button
 										title="Tanya sekarang"
 										variant="secondary"
-										className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
+										className="bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
 										aria-label="Tanya tentang unit dua kamar"
 									>
 										Tanya sekarang
@@ -136,7 +136,7 @@ export function ResidentsTypes() {
 										variant="link"
 										size="link"
 										iconRight={<RxChevronRight />}
-										className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+										className="text-primary-600 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
 										aria-label="Lihat tur virtual unit dua kamar"
 									>
 										Tur virtual

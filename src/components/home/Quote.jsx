@@ -26,7 +26,7 @@ export function Quote() {
 
 	return (
 		<section
-			id="relume"
+			id="quote"
 			className="overflow-hidden px-[5%] py-16 md:py-24 lg:py-32"
 			ref={ref}
 		>
