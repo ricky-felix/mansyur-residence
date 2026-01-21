@@ -47,7 +47,7 @@ export function CTAResidents() {
 					animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 					transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
 				>
-					<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+					{/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 						<Button
 							title="Studio"
 							className="px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
@@ -65,7 +65,7 @@ export function CTAResidents() {
 						>
 							2 Kamar
 						</Button>
-					</motion.div>
+					</motion.div> */}
 				</motion.div>
 			</div>
 		</section>

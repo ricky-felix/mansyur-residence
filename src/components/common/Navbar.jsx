@@ -275,11 +275,11 @@ export function Navbar() {
 											Hubungi kami
 										</h5>
 										<a
-											href="tel:+62614567890"
+											href="tel:+6285358565679"
 											className="mb-2 block text-sm underline underline-offset-2 transition-all duration-200 hover:text-primary-600 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
-											aria-label="Telepon +62 61 4567 8900"
+											aria-label="Telepon +62 853 5856 5679"
 										>
-											+62 61 4567 8900
+											+62-853-5856-5679
 										</a>
 										<a
 											href="mailto:info@mansyurresidence.com"
@@ -289,44 +289,45 @@ export function Navbar() {
 											info@mansyurresidence.com
 										</a>
 										<p className="text-sm leading-relaxed text-primary-900">
-											Jalan Diponegoro No. 45, Medan, Sumatera Utara
+											Jl. Dr. Mansyur No.165, Tj. Rejo, Kec. Medan Sunggal, Kota
+											Medan, Sumatera Utara 20154, Indonesia
 										</p>
 										<div className="mt-6 flex items-center gap-4 md:mt-8">
 											<a
-												href="#"
+												href="https://web.facebook.com/p/mansyurresidence-100063528183662/?_rdc=1&_rdr"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Facebook"
 											>
 												<BiLogoFacebook className="size-6" />
 											</a>
 											<a
-												href="#"
+												href="https://www.instagram.com/mansyur.residence/"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Instagram"
 											>
 												<BiLogoInstagram className="size-6" />
 											</a>
-											<a
+											{/* <a
 												href="#"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="Twitter"
 											>
 												<FaXTwitter className="size-6" />
-											</a>
-											<a
+											</a> */}
+											{/* <a
 												href="#"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="LinkedIn"
 											>
 												<BiLogoLinkedinSquare className="size-6" />
-											</a>
-											<a
+											</a> */}
+											{/* <a
 												href="#"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
 												aria-label="YouTube"
 											>
 												<BiLogoYoutube className="size-6" />
-											</a>
+											</a> */}
 										</div>
 									</div>
 								</div>

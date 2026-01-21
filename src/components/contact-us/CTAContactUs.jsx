@@ -48,16 +48,22 @@ export function CTAContactUs() {
 					animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 					transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
 				>
-					<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+					<motion.a
+						href="/documents/Mansyur_Residence_E-Brosur.pdf"
+						target="_blank"
+						rel="noopener noreferrer"
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+					>
 						<Button
-							title="Hubungi"
+							title="Download E-Brosur"
 							className="px-6 py-3 text-base bg-primary-500 hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-							aria-label="Hubungi tim penjualan kami"
+							aria-label="Download E-Brosur Mansyur Residence"
 						>
-							Hubungi
+							Download E-Brosur
 						</Button>
-					</motion.div>
-					<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+					</motion.a>
+					{/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 						<Button
 							title="Unduh"
 							variant="secondary"
@@ -66,7 +72,7 @@ export function CTAContactUs() {
 						>
 							Unduh
 						</Button>
-					</motion.div>
+					</motion.div> */}
 				</motion.div>
 			</div>
 		</section>

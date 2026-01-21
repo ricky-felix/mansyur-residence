@@ -62,37 +62,44 @@ export function LokasiStrategis() {
 	const locations = [
 		{
 			title: "Bandara",
-			description: "Kualanamu International Airport berjarak 25 kilometer dari residens",
-			image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=400&fit=crop",
+			description: "Kualanamu International Airport berjarak 43 kilometer",
+			image:
+				"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=400&fit=crop",
 			alt: "Modern airport terminal building",
 			index: 0,
 		},
 		{
-			title: "Pusat",
-			description: "Pusat perbelanjaan dan bisnis utama hanya 3 kilometer dari sini",
-			image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=400&h=400&fit=crop",
+			title: "Mall",
+			description: "Pusat perbelanjaan Sun Plaza hanya 5 kilometer dari sini",
+			image:
+				"https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&h=400&fit=crop",
 			alt: "Shopping mall and business district",
 			index: 1,
 		},
 		{
-			title: "Rumah",
-			description: "Rumah sakit terkemuka dan klinik modern tersedia dalam jarak 2 kilometer",
-			image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=400&fit=crop",
+			title: "Rumah Sakit",
+			description:
+				"Rumah sakit terkemuka dan klinik modern tersedia dalam jarak 2 kilometer",
+			image:
+				"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=400&fit=crop",
 			alt: "Modern hospital building exterior",
 			index: 2,
 		},
 		{
-			title: "Sekolah",
-			description: "Institusi pendidikan berkualitas internasional berada 4 kilometer dari lokasi",
-			image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=400&fit=crop",
-			alt: "International school campus",
+			title: "Universitas",
+			description:
+				"Institusi pendidikan berkualitas Universitas Sumatera Utara berada 2 kilometer dari lokasi",
+			image:
+				"https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=400&fit=crop",
+			alt: "University school campus",
 			index: 3,
 		},
 		{
-			title: "Taman",
-			description: "Ruang hijau dan rekreasi publik dapat diakses dalam 1 kilometer",
-			image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&h=400&fit=crop",
-			alt: "Beautiful city park with greenery",
+			title: "Supermarket",
+			description: "Area supermarket dapat diakses dalam 1 kilometer",
+			image:
+				"https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400&h=400&fit=crop",
+			alt: "Supermarket entrance with shopping carts",
 			index: 4,
 		},
 	];
@@ -114,7 +121,9 @@ export function LokasiStrategis() {
 						<motion.p
 							className="mb-4 text-xs font-bold uppercase tracking-[0.2em] opacity-60 md:mb-5"
 							initial={{ opacity: 0, x: -20 }}
-							animate={isHeaderInView ? { opacity: 0.6, x: 0 } : { opacity: 0, x: -20 }}
+							animate={
+								isHeaderInView ? { opacity: 0.6, x: 0 } : { opacity: 0, x: -20 }
+							}
 							transition={{ duration: 0.5 }}
 						>
 							Lokasi
@@ -122,7 +131,9 @@ export function LokasiStrategis() {
 						<motion.h2
 							className="mb-6 text-3xl font-bold leading-[1.1] tracking-[-0.02em] md:mb-7 md:text-4xl lg:text-5xl"
 							initial={{ opacity: 0, y: 20 }}
-							animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+							animate={
+								isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+							}
 							transition={{ duration: 0.6, delay: 0.1 }}
 						>
 							Jantung kota dengan akses ke semua yang penting
@@ -130,7 +141,9 @@ export function LokasiStrategis() {
 						<motion.p
 							className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] opacity-90"
 							initial={{ opacity: 0, y: 20 }}
-							animate={isHeaderInView ? { opacity: 0.9, y: 0 } : { opacity: 0, y: 20 }}
+							animate={
+								isHeaderInView ? { opacity: 0.9, y: 0 } : { opacity: 0, y: 20 }
+							}
 							transition={{ duration: 0.6, delay: 0.2 }}
 						>
 							Mansyur Residence berdiri di lokasi strategis Medan, menghubungkan
@@ -154,7 +167,10 @@ export function LokasiStrategis() {
 
 					{locations.map((location, idx) => {
 						const itemRef = useRef(null);
-						const isItemInView = useInView(itemRef, { once: true, margin: "-60px" });
+						const isItemInView = useInView(itemRef, {
+							once: true,
+							margin: "-60px",
+						});
 						const isEven = idx % 2 === 1;
 
 						return (
@@ -179,8 +195,15 @@ export function LokasiStrategis() {
 													isEven ? "md:self-end" : ""
 												}`}
 												initial={{ opacity: 0, x: isEven ? 20 : -20 }}
-												animate={isItemInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? 20 : -20 }}
-												transition={{ delay: location.index * 0.2 + 0.3, duration: 0.5 }}
+												animate={
+													isItemInView
+														? { opacity: 1, x: 0 }
+														: { opacity: 0, x: isEven ? 20 : -20 }
+												}
+												transition={{
+													delay: location.index * 0.2 + 0.3,
+													duration: 0.5,
+												}}
 											>
 												<h3 className="mb-3 text-xl font-bold md:text-2xl lg:text-3xl leading-[1.2] tracking-[-0.02em]">
 													{location.title}
@@ -223,7 +246,11 @@ export function LokasiStrategis() {
 												whileHover={{
 													scale: 1.05,
 													boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.3)",
-													transition: { type: "spring", stiffness: 300, damping: 20 },
+													transition: {
+														type: "spring",
+														stiffness: 300,
+														damping: 20,
+													},
 												}}
 											>
 												<motion.img
@@ -249,7 +276,11 @@ export function LokasiStrategis() {
 												whileHover={{
 													scale: 1.05,
 													boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.3)",
-													transition: { type: "spring", stiffness: 300, damping: 20 },
+													transition: {
+														type: "spring",
+														stiffness: 300,
+														damping: 20,
+													},
 												}}
 											>
 												<motion.img
@@ -299,8 +330,15 @@ export function LokasiStrategis() {
 											<motion.div
 												className="order-last mb-4 flex flex-col items-start self-start pr-4 sm:mb-0 md:order-none"
 												initial={{ opacity: 0, x: isEven ? 20 : -20 }}
-												animate={isItemInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? 20 : -20 }}
-												transition={{ delay: location.index * 0.2 + 0.3, duration: 0.5 }}
+												animate={
+													isItemInView
+														? { opacity: 1, x: 0 }
+														: { opacity: 0, x: isEven ? 20 : -20 }
+												}
+												transition={{
+													delay: location.index * 0.2 + 0.3,
+													duration: 0.5,
+												}}
 											>
 												<h3 className="mb-3 text-xl font-bold md:text-2xl lg:text-3xl leading-[1.2] tracking-[-0.02em]">
 													{location.title}
@@ -319,7 +357,11 @@ export function LokasiStrategis() {
 					<motion.div
 						className="absolute right-0 z-0 h-1 w-16 bg-gradient-to-r from-transparent to-white hidden md:block"
 						initial={{ opacity: 0, scaleX: 0 }}
-						animate={isHeaderInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+						animate={
+							isHeaderInView
+								? { opacity: 1, scaleX: 1 }
+								: { opacity: 0, scaleX: 0 }
+						}
 						transition={{ delay: locations.length * 0.2 + 0.5, duration: 0.6 }}
 						style={{ transformOrigin: "left" }}
 					/>

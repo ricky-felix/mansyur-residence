@@ -29,16 +29,27 @@ export function Footer() {
 						</p>
 					</div>
 					<div className="mt-8 flex flex-wrap gap-5 md:mt-10 lg:mt-0 lg:flex-nowrap">
-						<Button title="Jadwalkan" className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700 text-primary-900 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/30 hover:-translate-y-0.5">
-							Jadwalkan
-						</Button>
-						<Button
-							title="Unduh"
-							variant="secondary"
-							className="px-8 py-4 text-base font-semibold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+						<a href="/kontak">
+							<Button
+								title="Jadwalkan"
+								className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700 text-primary-900 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/30 hover:-translate-y-0.5"
+							>
+								Jadwalkan
+							</Button>
+						</a>
+						<a
+							href="/documents/Mansyur_Residence_E-Brosur.pdf"
+							target="_blank"
+							rel="noopener noreferrer"
 						>
-							Unduh
-						</Button>
+							<Button
+								title="Unduh"
+								variant="secondary"
+								className="px-8 py-4 text-base font-semibold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+							>
+								Unduh
+							</Button>
+						</a>
 					</div>
 				</div>
 				<div className="py-16 md:py-20 lg:py-24">
@@ -91,7 +102,7 @@ export function Footer() {
 						<ul className="space-y-3">
 							<li>
 								<a
-									href="/residents#pricing"
+									href="/resident"
 									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
 								>
 									Harga Unit
@@ -99,7 +110,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a
-									href="/residents#comparison"
+									href="/resident"
 									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
 								>
 									Bandingkan Unit
@@ -107,7 +118,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a
-									href="/gallery"
+									href="/resident"
 									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
 								>
 									Tur Virtual
@@ -115,7 +126,7 @@ export function Footer() {
 							</li>
 							<li>
 								<a
-									href="/contact-us"
+									href="/resident"
 									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
 								>
 									Tanya Sekarang
@@ -129,24 +140,36 @@ export function Footer() {
 						</h2>
 						<ul className="space-y-3">
 							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
+								<a
+									href="/gallery"
+									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+								>
 									Kolam Infinity
-								</span>
+								</a>
 							</li>
 							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
+								<a
+									href="/gallery"
+									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+								>
 									Pusat Kebugaran
-								</span>
+								</a>
 							</li>
 							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
+								<a
+									href="/gallery"
+									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+								>
 									Sky Lounge
-								</span>
+								</a>
 							</li>
 							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
+								<a
+									href="/gallery"
+									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+								>
 									Parkir Pintar
-								</span>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -157,10 +180,10 @@ export function Footer() {
 						<ul className="space-y-3">
 							<li>
 								<a
-									href="tel:+62614567890"
+									href="tel:+6285358565679"
 									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
 								>
-									+62 61 4567 8900
+									+62-853-5856-5679
 								</a>
 							</li>
 							<li>
@@ -173,12 +196,8 @@ export function Footer() {
 							</li>
 							<li>
 								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
-									Jl. Diponegoro No. 45, Medan
-								</span>
-							</li>
-							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
-									Sumatera Utara 20111
+									Jl. Dr. Mansyur No.165, Tj. Rejo, Kec. Medan Sunggal, Kota
+									Medan, Sumatera Utara 20154, Indonesia
 								</span>
 							</li>
 						</ul>
@@ -200,40 +219,45 @@ export function Footer() {
 				<div className="flex flex-col-reverse items-start gap-6 pb-4 pt-8 sm:flex-row sm:items-center sm:justify-between md:pb-0 md:pt-10">
 					<div className="flex flex-col-reverse items-start md:flex-row md:gap-8 lg:items-center">
 						<p className="text-base leading-[1.6] tracking-[-0.01em] text-white/60">
-							© 2025 Mansyur Residence. All rights reserved.
+							© 202 Mansyur Residence. All rights reserved.
 						</p>
 					</div>
 					<div className="flex items-center justify-center gap-5">
 						<a
-							href="#"
-							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300"
+							href="https://web.facebook.com/p/mansyurresidence-100063528183662/?_rdc=1&_rdr"
+							className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
+							aria-label="Facebook"
 						>
-							<BiLogoFacebookCircle className="size-7" />
+							<BiLogoFacebookCircle className="size-6" />
 						</a>
 						<a
-							href="#"
-							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300"
+							href="https://www.instagram.com/mansyur.residence/"
+							className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
+							aria-label="Instagram"
 						>
-							<BiLogoInstagram className="size-7" />
+							<BiLogoInstagram className="size-6" />
 						</a>
-						<a
+						{/* <a
 							href="#"
-							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300"
-						>
-							<FaXTwitter className="size-7 p-0.5" />
-						</a>
-						<a
-							href="#"
-							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300"
-						>
-							<BiLogoLinkedinSquare className="size-7" />
-						</a>
-						<a
-							href="#"
-							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300"
-						>
-							<BiLogoYoutube className="size-7" />
-						</a>
+							className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
+							aria-label="Twitter"
+							>
+								<FaXTwitter className="size-6" />
+							</a> */}
+						{/* <a
+								href="#"
+								className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
+								aria-label="LinkedIn"
+							>
+								<BiLogoLinkedinSquare className="size-6" />
+							</a> */}
+						{/* <a
+								href="#"
+								className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
+								aria-label="YouTube"
+							>
+								<BiLogoYoutube className="size-6" />
+							</a> */}
 					</div>
 				</div>
 			</div>

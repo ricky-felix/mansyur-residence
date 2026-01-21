@@ -43,13 +43,13 @@ export function Testimonial(props) {
 						</h2>
 						<p className="md:text-md">{description}</p>
 					</div>
-					<div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
+					{/* <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
 						{buttons.map((button, index) => (
 							<Button key={index} {...button}>
 								{button.title}
 							</Button>
 						))}
-					</div>
+					</div> */}
 				</div>
 				<div className="grid h-screen auto-cols-fr grid-cols-1 content-center items-center gap-4 overflow-hidden border-t border-border-primary px-4 md:h-[70vh] md:grid-cols-2 md:px-8 lg:h-auto lg:border-none lg:pl-0 lg:pr-12">
 					<motion.div
@@ -59,7 +59,10 @@ export function Testimonial(props) {
 						<div className="grid size-full auto-cols-fr grid-cols-1 content-center gap-x-6 gap-y-4">
 							{leftTestimonials.map((leftTestimonial, index) => (
 								<div key={index} className="relative w-full">
-									<TestimonialCard testimonial={leftTestimonial} index={index} />
+									<TestimonialCard
+										testimonial={leftTestimonial}
+										index={index}
+									/>
 								</div>
 							))}
 						</div>
@@ -71,7 +74,10 @@ export function Testimonial(props) {
 						<div className="grid size-full auto-cols-fr grid-cols-1 content-center gap-4">
 							{rightTestimonials.map((rightTestimonial, index) => (
 								<div key={index} className="relative w-full">
-									<TestimonialCard testimonial={rightTestimonial} index={index} />
+									<TestimonialCard
+										testimonial={rightTestimonial}
+										index={index}
+									/>
 								</div>
 							))}
 						</div>
@@ -91,7 +97,11 @@ const TestimonialCard = ({ testimonial, index }) => {
 			ref={cardRef}
 			className="flex w-full flex-col items-start justify-between border border-border-primary p-6 md:p-8 relative overflow-hidden bg-white"
 			initial={{ opacity: 0, y: 30, scale: 0.95 }}
-			animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+			animate={
+				isInView
+					? { opacity: 1, y: 0, scale: 1 }
+					: { opacity: 0, y: 30, scale: 0.95 }
+			}
 			transition={{
 				type: "spring",
 				stiffness: 100,
@@ -125,7 +135,9 @@ const TestimonialCard = ({ testimonial, index }) => {
 							<motion.div
 								key={starIndex}
 								initial={{ opacity: 0, scale: 0 }}
-								animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+								animate={
+									isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
+								}
 								transition={{
 									type: "spring",
 									stiffness: 200,
@@ -169,10 +181,10 @@ const TestimonialCard = ({ testimonial, index }) => {
 				/>
 				<div>
 					<p className="font-semibold">{testimonial.name}</p>
-					<p className="text-sm opacity-70">
+					{/* <p className="text-sm opacity-70">
 						<span>{testimonial.position}</span>,{" "}
 						<span>{testimonial.companyName}</span>
-					</p>
+					</p> */}
 				</div>
 			</motion.div>
 
@@ -189,11 +201,15 @@ const TestimonialCard = ({ testimonial, index }) => {
 };
 
 export const TestimonialDefaults = {
-	heading: "Customer testimonials",
-	description:
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+	heading: "Pengalaman penghuni",
+	description: "Dengarkan cerita mereka yang tinggal di sini",
 	buttons: [
-		{ title: "Button", variant: "secondary", className: "px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg" },
+		{
+			title: "Button",
+			variant: "secondary",
+			className:
+				"px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 transition-all duration-300 hover:shadow-lg",
+		},
 		{
 			title: "Button",
 			variant: "link",
@@ -205,125 +221,77 @@ export const TestimonialDefaults = {
 	leftTestimonials: [
 		{
 			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+				'"Lokasi sangat strategis dan fasilitasnya lengkap. Anak-anak bisa bermain dengan aman di area bermain. Sangat puas dengan pilihan kami!"',
 			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 1",
+				src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Sarah Wijaya",
 			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
+			name: "Sarah Wijaya",
+			position: "Ibu Rumah Tangga",
+			companyName: "Penghuni Blok A",
+			numberOfStars: 4,
 		},
 		{
 			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+				'"Keamanan 24 jam membuat saya tenang meninggalkan rumah untuk bekerja. Lingkungannya asri dan tetangga sangat ramah."',
 			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 2",
+				src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Budi Santoso",
 			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
+			name: "Budi Santoso",
+			position: "Pengusaha",
+			companyName: "Penghuni Blok B",
+			numberOfStars: 4,
 		},
 		{
 			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+				'"Kolam renangnya bersih dan terawat. Gym-nya juga lengkap. Tidak perlu lagi keluar kompleks untuk olahraga!"',
 			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 3",
+				src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Linda Permata",
 			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
-		},
-		{
-			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 4",
-			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
-		},
-		{
-			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 5",
-			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
+			name: "Linda Permata",
+			position: "Dokter",
+			companyName: "Penghuni Blok C",
 			numberOfStars: 5,
 		},
 	],
 	rightTestimonials: [
 		{
 			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+				'"Desain rumahnya modern dan fungsional. Setiap ruangan terasa luas dan pencahayaan alaminya sangat baik."',
 			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 6",
+				src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Ricky Pratama",
 			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
+			name: "Ricky Pratama",
+			position: "Arsitek",
+			companyName: "Penghuni Blok B",
+			numberOfStars: 4,
+		},
+		{
+			quote:
+				'"Manajemen kompleks sangat responsif. Setiap keluhan ditangani dengan cepat dan profesional."',
+			avatar: {
+				src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Maya Sari",
+			},
+			name: "Maya Sari",
+			position: "Manager HRD",
+			companyName: "Penghuni Blok C",
 			numberOfStars: 5,
 		},
 		{
 			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+				'"Sudah 3 tahun tinggal di sini dan tidak pernah menyesal. Komunitas yang solid dan fasilitas terus ditingkatkan."',
 			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 7",
+				src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+				alt: "Foto Ahmad Hidayat",
 			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
-		},
-		{
-			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 8",
-			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
-		},
-		{
-			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 9",
-			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
-		},
-		{
-			quote:
-				'"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
-			avatar: {
-				src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-				alt: "Testimonial avatar 10",
-			},
-			name: "Name Surname",
-			position: "Position",
-			companyName: "Company name",
-			numberOfStars: 5,
+			name: "Ahmad Hidayat",
+			position: "Dosen",
+			companyName: "Penghuni Blok A",
+			numberOfStars: 4,
 		},
 	],
 };

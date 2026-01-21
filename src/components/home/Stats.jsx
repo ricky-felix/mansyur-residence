@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useInView, useSpring, useMotionValue, useTransform } from "framer-motion";
+import {
+	motion,
+	useInView,
+	useSpring,
+	useMotionValue,
+	useTransform,
+} from "framer-motion";
 
 const statVariants = {
 	hidden: { opacity: 0, y: 20 },
@@ -146,7 +152,9 @@ export function Stats() {
 				>
 					<motion.div
 						initial={{ opacity: 0, x: -40 }}
-						animate={isHeaderInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+						animate={
+							isHeaderInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }
+						}
 						transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
 					>
 						<h2 className="text-3xl font-bold leading-[1.1] tracking-[-0.02em] md:text-4xl lg:text-5xl">
@@ -155,8 +163,14 @@ export function Stats() {
 					</motion.div>
 					<motion.div
 						initial={{ opacity: 0, x: 40 }}
-						animate={isHeaderInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-						transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+						animate={
+							isHeaderInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }
+						}
+						transition={{
+							duration: 0.7,
+							delay: 0.2,
+							ease: [0.25, 0.1, 0.25, 1],
+						}}
 					>
 						<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-opacity-90">
 							Mansyur Residence menggabungkan desain arsitektur kontemporer

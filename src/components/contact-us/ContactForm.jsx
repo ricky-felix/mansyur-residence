@@ -71,7 +71,10 @@ export function ContactForm() {
 	const contactRef = useRef(null);
 	const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
 	const isFormInView = useInView(formRef, { once: true, margin: "-80px" });
-	const isContactInView = useInView(contactRef, { once: true, margin: "-80px" });
+	const isContactInView = useInView(contactRef, {
+		once: true,
+		margin: "-80px",
+	});
 
 	const contactInfo = [
 		{
@@ -85,14 +88,15 @@ export function ContactForm() {
 			icon: BiPhone,
 			title: "Telepon",
 			description: "Hubungi tim penjualan kami",
-			link: "tel:+62618888888",
-			linkText: "+62 (61) 8888-8888",
+			link: "tel:+6285358565679",
+			linkText: "+62-853-5856-5679",
 		},
 		{
 			icon: BiMap,
 			title: "Kantor",
-			description: "Jl. Mansyur No. 123, Medan 20112",
-			link: "#lokasi",
+			description:
+				"Jl. Dr. Mansyur No.165, Tj. Rejo, Kec. Medan Sunggal, Kota Medan, Sumatera Utara 20154, Indonesia",
+			link: "https://maps.google.com/?q=Jl.+Dr.+Mansyur+No.165,+Tj.+Rejo,+Kec.+Medan+Sunggal,+Kota+Medan,+Sumatera+Utara+20154,+Indonesia",
 			linkText: "Lihat lokasi",
 			isLocation: true,
 		},
@@ -143,7 +147,9 @@ export function ContactForm() {
 						ref={formRef}
 						className="bg-white/90 backdrop-blur-sm border border-primary-200/50 rounded-2xl p-8 md:p-10 lg:p-12 shadow-xl"
 						initial={{ opacity: 0, y: 40 }}
-						animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+						animate={
+							isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+						}
 						transition={{ type: "spring", stiffness: 80, damping: 20 }}
 					>
 						<form className="grid grid-cols-1 gap-6">
@@ -152,10 +158,15 @@ export function ContactForm() {
 								<motion.div
 									className="grid w-full items-center"
 									initial={{ opacity: 0, x: -20 }}
-									animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+									animate={
+										isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+									}
 									transition={{ delay: 0.1 }}
 								>
-									<Label htmlFor="firstName" className="mb-2 text-primary-800 font-medium">
+									<Label
+										htmlFor="firstName"
+										className="mb-2 text-primary-800 font-medium"
+									>
 										Nama depan
 									</Label>
 									<Input
@@ -168,10 +179,15 @@ export function ContactForm() {
 								<motion.div
 									className="grid w-full items-center"
 									initial={{ opacity: 0, x: 20 }}
-									animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+									animate={
+										isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
+									}
 									transition={{ delay: 0.15 }}
 								>
-									<Label htmlFor="lastName" className="mb-2 text-primary-800 font-medium">
+									<Label
+										htmlFor="lastName"
+										className="mb-2 text-primary-800 font-medium"
+									>
 										Nama belakang
 									</Label>
 									<Input
@@ -188,10 +204,15 @@ export function ContactForm() {
 								<motion.div
 									className="grid w-full items-center"
 									initial={{ opacity: 0, x: -20 }}
-									animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+									animate={
+										isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+									}
 									transition={{ delay: 0.2 }}
 								>
-									<Label htmlFor="email" className="mb-2 text-primary-800 font-medium">
+									<Label
+										htmlFor="email"
+										className="mb-2 text-primary-800 font-medium"
+									>
 										Email
 									</Label>
 									<Input
@@ -204,10 +225,15 @@ export function ContactForm() {
 								<motion.div
 									className="grid w-full items-center"
 									initial={{ opacity: 0, x: 20 }}
-									animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+									animate={
+										isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
+									}
 									transition={{ delay: 0.25 }}
 								>
-									<Label htmlFor="phone" className="mb-2 text-primary-800 font-medium">
+									<Label
+										htmlFor="phone"
+										className="mb-2 text-primary-800 font-medium"
+									>
 										Nomor telepon
 									</Label>
 									<Input
@@ -223,18 +249,26 @@ export function ContactForm() {
 							<motion.div
 								className="grid w-full items-center"
 								initial={{ opacity: 0, y: 20 }}
-								animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+								animate={
+									isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
 								transition={{ delay: 0.3 }}
 							>
-								<Label className="mb-2 text-primary-800 font-medium">Tipe unit yang diminati</Label>
+								<Label className="mb-2 text-primary-800 font-medium">
+									Tipe unit yang diminati
+								</Label>
 								<Select>
 									<SelectTrigger className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white transition-all duration-300 hover:border-primary-300 relative z-20">
 										<SelectValue placeholder="Pilih tipe unit" />
 									</SelectTrigger>
 									<SelectContent className="bg-white border-primary-200 rounded-lg shadow-lg z-50">
 										<SelectItem value="studio">Studio (24m²)</SelectItem>
-										<SelectItem value="one-bedroom">Satu Kamar (36m²)</SelectItem>
-										<SelectItem value="two-bedroom">Dua Kamar (48m²)</SelectItem>
+										<SelectItem value="one-bedroom">
+											Satu Kamar (36m²)
+										</SelectItem>
+										<SelectItem value="two-bedroom">
+											Dua Kamar (48m²)
+										</SelectItem>
 										<SelectItem value="penthouse">Penthouse (72m²)</SelectItem>
 									</SelectContent>
 								</Select>
@@ -244,10 +278,14 @@ export function ContactForm() {
 							<motion.div
 								className="grid w-full items-center py-4"
 								initial={{ opacity: 0, y: 20 }}
-								animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+								animate={
+									isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
 								transition={{ delay: 0.35 }}
 							>
-								<Label className="mb-4 text-primary-800 font-medium">Apa kepentingan anda?</Label>
+								<Label className="mb-4 text-primary-800 font-medium">
+									Apa kepentingan anda?
+								</Label>
 								<RadioGroup className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 									{[
 										{ value: "hunian", label: "Hunian pribadi" },
@@ -279,10 +317,15 @@ export function ContactForm() {
 							<motion.div
 								className="grid w-full items-center"
 								initial={{ opacity: 0, y: 20 }}
-								animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+								animate={
+									isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
 								transition={{ delay: 0.4 }}
 							>
-								<Label htmlFor="message" className="mb-2 text-primary-800 font-medium">
+								<Label
+									htmlFor="message"
+									className="mb-2 text-primary-800 font-medium"
+								>
 									Pesan
 								</Label>
 								<Textarea
@@ -296,23 +339,36 @@ export function ContactForm() {
 							<motion.div
 								className="flex items-start space-x-3 py-2"
 								initial={{ opacity: 0, y: 20 }}
-								animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+								animate={
+									isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
 								transition={{ delay: 0.45 }}
 							>
 								<Checkbox
 									id="terms"
 									className="mt-0.5 border-primary-300 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600"
 								/>
-								<Label htmlFor="terms" className="cursor-pointer text-primary-700 text-sm leading-relaxed">
+								<Label
+									htmlFor="terms"
+									className="cursor-pointer text-primary-700 text-sm leading-relaxed"
+								>
 									Saya setuju untuk dihubungi oleh tim Mansyur Residence dan
-									menyetujui <a href="#" className="text-primary-600 underline hover:text-primary-700">kebijakan privasi</a>
+									menyetujui{" "}
+									<a
+										href="#"
+										className="text-primary-600 underline hover:text-primary-700"
+									>
+										kebijakan privasi
+									</a>
 								</Label>
 							</motion.div>
 
 							{/* Submit Button */}
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}
-								animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+								animate={
+									isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
 								transition={{ delay: 0.5 }}
 							>
 								<motion.div
@@ -366,17 +422,25 @@ export function ContactForm() {
 										{info.description}
 									</p>
 									{info.isLocation ? (
-										<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+										<motion.a
+											href={info.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											whileHover={{ x: 5 }}
+											transition={{ duration: 0.2 }}
+										>
 											<Button
 												title={info.linkText}
 												variant="link"
 												size="link"
-												iconRight={<RxChevronRight className="transition-transform duration-300 group-hover:translate-x-1" />}
+												iconRight={
+													<RxChevronRight className="transition-transform duration-300 group-hover:translate-x-1" />
+												}
 												className="text-primary-600 hover:text-primary-700 font-semibold p-0"
 											>
 												{info.linkText}
 											</Button>
-										</motion.div>
+										</motion.a>
 									) : (
 										<a
 											href={info.link}
@@ -390,7 +454,7 @@ export function ContactForm() {
 						})}
 
 						{/* Additional CTA Card */}
-						<motion.div
+						{/* <motion.div
 							custom={3}
 							variants={cardVariants}
 							className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl p-6 md:p-8 shadow-lg relative overflow-hidden"
@@ -398,9 +462,9 @@ export function ContactForm() {
 								scale: 1.02,
 								transition: { type: "spring", stiffness: 300, damping: 20 },
 							}}
-						>
-							{/* Decorative element */}
-							<div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+						> */}
+						{/* Decorative element */}
+						{/* <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 							<div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary-500/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
 							<div className="relative z-10">
@@ -423,7 +487,7 @@ export function ContactForm() {
 									</Button>
 								</motion.div>
 							</div>
-						</motion.div>
+						</motion.div> */}
 					</motion.div>
 				</div>
 			</div>

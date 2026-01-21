@@ -57,6 +57,17 @@ h3 {
 	text-transform: uppercase;
 }
 
+/* Ensure all interactive elements have pointer cursor */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.cursor-pointer {
+	cursor: pointer;
+}
+
 @supports (backdrop-filter: blur(10px)) {
 	.glass-morphism {
 		backdrop-filter: blur(16px) saturate(180%);

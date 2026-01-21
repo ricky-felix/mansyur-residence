@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 // Animation variants
 const containerVariants = {
@@ -36,10 +36,15 @@ export function GalleryImages(props) {
 		...props,
 	};
 
+	const [selectedImage, setSelectedImage] = useState(null);
+
 	const headerRef = useRef(null);
 	const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
 	const galleryRef = useRef(null);
-	const isGalleryInView = useInView(galleryRef, { once: true, margin: "-60px" });
+	const isGalleryInView = useInView(galleryRef, {
+		once: true,
+		margin: "-60px",
+	});
 
 	return (
 		<section
@@ -54,7 +59,9 @@ export function GalleryImages(props) {
 					<motion.h2
 						className="mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
 						initial={{ opacity: 0, y: 30 }}
-						animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+						animate={
+							isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+						}
 						transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
 					>
 						{heading}
@@ -62,7 +69,9 @@ export function GalleryImages(props) {
 					<motion.p
 						className="md:text-md"
 						initial={{ opacity: 0, y: 20 }}
-						animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+						animate={
+							isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+						}
 						transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
 					>
 						{description}
@@ -76,11 +85,11 @@ export function GalleryImages(props) {
 					animate={isGalleryInView ? "visible" : "hidden"}
 				>
 					{images.map((image, index) => (
-						<motion.a
+						<motion.div
 							key={index}
-							href={image.url}
+							onClick={() => setSelectedImage(image)}
 							variants={imageVariants}
-							className="group relative overflow-hidden rounded-sm block"
+							className="group relative overflow-hidden rounded-sm block cursor-pointer"
 							whileHover={{
 								scale: 1.05,
 								transition: { type: "spring", stiffness: 300, damping: 20 },
@@ -147,10 +156,57 @@ export function GalleryImages(props) {
 									ease: "easeInOut",
 								}}
 							/>
-						</motion.a>
+						</motion.div>
 					))}
 				</motion.div>
 			</div>
+
+			{/* Lightbox Modal */}
+			<AnimatePresence>
+				{selectedImage && (
+					<motion.div
+						className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						onClick={() => setSelectedImage(null)}
+					>
+						<motion.div
+							className="relative max-w-5xl max-h-[90vh] w-full"
+							initial={{ scale: 0.8, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							exit={{ scale: 0.8, opacity: 0 }}
+							transition={{ type: "spring", stiffness: 300, damping: 25 }}
+							onClick={(e) => e.stopPropagation()}
+						>
+							<motion.img
+								src={selectedImage.src}
+								alt={selectedImage.alt}
+								className="w-full h-full object-contain rounded-lg"
+							/>
+							<button
+								onClick={() => setSelectedImage(null)}
+								className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+								aria-label="Close lightbox"
+							>
+								<svg
+									className="w-6 h-6 text-white"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M6 18L18 6M6 6l12 12"
+									/>
+								</svg>
+							</button>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</section>
 	);
 }
@@ -161,44 +217,44 @@ export const GalleryDefaults = {
 	images: [
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-10.webp",
 			alt: "Modern apartment building exterior with glass facade",
 		},
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-37.webp",
 			alt: "Luxury living room with modern furniture",
 		},
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-30.webp",
 			alt: "Spacious bedroom with elegant interior design",
 		},
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-28.webp",
 			alt: "Contemporary kitchen with premium appliances",
 		},
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-26.webp",
 			alt: "Rooftop infinity pool with city views",
 		},
 		{
 			url: "#",
-			src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop",
+			src: "./images/gallery/Mansyur-Residence-15.webp",
 			alt: "State-of-the-art fitness center",
 		},
-		{
-			url: "#",
-			src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop",
-			alt: "Elegant bathroom with marble finishes",
-		},
-		{
-			url: "#",
-			src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=600&fit=crop",
-			alt: "Private balcony with panoramic views",
-		},
+		// {
+		// 	url: "#",
+		// 	src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop",
+		// 	alt: "Elegant bathroom with marble finishes",
+		// },
+		// {
+		// 	url: "#",
+		// 	src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=600&fit=crop",
+		// 	alt: "Private balcony with panoramic views",
+		// },
 	],
 };
 

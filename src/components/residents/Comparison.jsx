@@ -66,7 +66,7 @@ export function Comparison() {
 									Studio
 								</h3>
 								<p className="mb-8 text-base md:text-lg leading-[1.7] tracking-[-0.01em] opacity-90 md:mb-9">
-									Mulai dari Rp 500 juta
+									Mulai dari Rp 588 juta
 								</p>
 							</div>
 							<div className="grid grid-cols-1">
@@ -75,7 +75,7 @@ export function Comparison() {
 										Luas unit
 									</p>
 									<h6 className="text-lg font-bold leading-[1.3] tracking-[-0.01em] md:text-xl">
-										25-35 m²
+										24 m²
 									</h6>
 								</div>
 								<div className="flex justify-between gap-6 border-b-2 border-border-primary py-5 first:border-t-2">
@@ -122,18 +122,10 @@ export function Comparison() {
 								</div>
 								<div className="flex self-start gap-4">
 									<div className="flex-none self-start">
-										<BiX className="size-7 opacity-40" />
+										<BiCheck className="size-7" />
 									</div>
-									<p className="text-base leading-[1.6] tracking-[-0.01em] opacity-50">
+									<p className="text-base leading-[1.6] tracking-[-0.01em]">
 										Manajemen energi otomatis
-									</p>
-								</div>
-								<div className="flex self-start gap-4">
-									<div className="flex-none self-start">
-										<BiX className="size-7 opacity-40" />
-									</div>
-									<p className="text-base leading-[1.6] tracking-[-0.01em] opacity-50">
-										Akses aplikasi mobile
 									</p>
 								</div>
 							</div>
@@ -161,7 +153,7 @@ export function Comparison() {
 									Dua kamar tidur
 								</h3>
 								<p className="mb-8 text-base md:text-lg leading-[1.7] tracking-[-0.01em] opacity-90 md:mb-9">
-									Mulai dari Rp 850 juta
+									Mulai dari Rp 1.088 juta
 								</p>
 							</div>
 							<div className="grid grid-cols-1">
@@ -170,7 +162,7 @@ export function Comparison() {
 										Luas unit
 									</p>
 									<h6 className="text-lg font-bold leading-[1.3] tracking-[-0.01em] md:text-xl">
-										55-75 m²
+										48 m²
 									</h6>
 								</div>
 								<div className="flex justify-between gap-6 border-b-2 border-border-primary py-5 first:border-t-2">
@@ -186,7 +178,7 @@ export function Comparison() {
 										Kamar mandi
 									</p>
 									<h6 className="text-lg font-bold leading-[1.3] tracking-[-0.01em] md:text-xl">
-										2
+										1
 									</h6>
 								</div>
 								<div className="flex justify-between gap-6 border-b-2 border-border-primary py-5 first:border-t-2">
@@ -221,14 +213,6 @@ export function Comparison() {
 									</div>
 									<p className="text-base leading-[1.6] tracking-[-0.01em]">
 										Manajemen energi otomatis
-									</p>
-								</div>
-								<div className="flex self-start gap-4">
-									<div className="flex-none self-start">
-										<BiCheck className="size-7" />
-									</div>
-									<p className="text-base leading-[1.6] tracking-[-0.01em]">
-										Akses aplikasi mobile
 									</p>
 								</div>
 							</div>

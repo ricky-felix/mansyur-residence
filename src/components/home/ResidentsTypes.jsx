@@ -58,20 +58,26 @@ export function ResidentsTypes() {
 								Ruang efisien dengan teknologi pintar untuk gaya hidup urban
 							</p>
 							<div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
-								<motion.div
+								<motion.a
+									href="/images/home/Blueprint_Studio.webp"
+									target="_blank"
+									rel="noopener noreferrer"
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 								>
 									<Button
-										title="Bandingkan"
+										title="Lihat Blueprint"
 										variant="secondary"
 										className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
-										aria-label="Bandingkan unit studio dengan unit lainnya"
+										aria-label="Lihat blueprint unit studio"
 									>
-										Bandingkan
+										Lihat Blueprint
 									</Button>
-								</motion.div>
-								<motion.div
+								</motion.a>
+								<motion.a
+									href="/videos/Virtual_Tur_Studio-compress.mp4"
+									target="_blank"
+									rel="noopener noreferrer"
 									whileHover={{ x: 5 }}
 									transition={{ duration: 0.2 }}
 								>
@@ -85,7 +91,7 @@ export function ResidentsTypes() {
 									>
 										Tur virtual
 									</Button>
-								</motion.div>
+								</motion.a>
 							</div>
 						</div>
 					</motion.div>
@@ -114,20 +120,26 @@ export function ResidentsTypes() {
 								Ruang luas dengan semua kenyamanan modern untuk keluarga anda
 							</p>
 							<div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
-								<motion.div
+								<motion.a
+									href="/images/home/Blueprint_2-Kamar.webp"
+									target="_blank"
+									rel="noopener noreferrer"
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 								>
 									<Button
-										title="Tanya sekarang"
+										title="Lihat Blueprint"
 										variant="secondary"
 										className="px-6 py-3 text-base bg-primary-100 hover:bg-primary-200 text-primary-700 border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black transition-shadow duration-300 hover:shadow-md"
-										aria-label="Tanya tentang unit dua kamar"
+										aria-label="Lihat blueprint unit dua kamar"
 									>
-										Tanya sekarang
+										Lihat Blueprint
 									</Button>
-								</motion.div>
-								<motion.div
+								</motion.a>
+								<motion.a
+									href="/videos/Virtual_Tur_2_Kamar-compress.mp4"
+									target="_blank"
+									rel="noopener noreferrer"
 									whileHover={{ x: 5 }}
 									transition={{ duration: 0.2 }}
 								>
@@ -141,7 +153,7 @@ export function ResidentsTypes() {
 									>
 										Tur virtual
 									</Button>
-								</motion.div>
+								</motion.a>
 							</div>
 						</div>
 					</motion.div>

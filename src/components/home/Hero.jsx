@@ -58,7 +58,7 @@ export function Hero() {
 						className="space-y-6 md:space-y-8"
 					>
 						<motion.h1
-							className="text-4xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl bg-gradient-to-r from-primary-800 via-primary-600 to-primary-700 bg-clip-text text-transparent drop-shadow-sm"
+							className="text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl bg-gradient-to-r from-primary-800 via-primary-600 to-primary-700 bg-clip-text text-transparent drop-shadow-sm"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, ease: "easeOut" }}
@@ -81,7 +81,8 @@ export function Hero() {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
 						>
-							<motion.div
+							<motion.a
+								href="/resident"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 							>
@@ -92,8 +93,11 @@ export function Hero() {
 								>
 									Lihat Residens
 								</Button>
-							</motion.div>
-							<motion.div
+							</motion.a>
+							<motion.a
+								href="/documents/Mansyur_Residence_E-Brosur.pdf"
+								target="_blank"
+								rel="noopener noreferrer"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 							>
@@ -105,7 +109,7 @@ export function Hero() {
 								>
 									Unduh Brosur
 								</Button>
-							</motion.div>
+							</motion.a>
 						</motion.div>
 					</motion.div>
 				</div>
@@ -123,10 +127,10 @@ export function Hero() {
 			>
 				<div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent z-10 pointer-events-none" />
 				<motion.img
-					src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop"
+					src="./images/home/Mansyur_Residence.webp"
 					alt="Luxury modern apartment building with stunning architecture"
 					className="size-full object-cover"
-					whileHover={{ scale: 1.02 }}
+					whileHover={{ scale: 1.05 }}
 					transition={{ duration: 0.5, ease: "easeOut" }}
 				/>
 			</motion.div>

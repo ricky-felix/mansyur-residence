@@ -12,7 +12,14 @@ import { BiCheck } from "react-icons/bi";
 import { motion, useInView } from "framer-motion";
 
 // Pricing card component with animations
-const PricingCard = ({ title, price, features, buttonText, delay = 0, isInView }) => (
+const PricingCard = ({
+	title,
+	price,
+	features,
+	buttonText,
+	delay = 0,
+	isInView,
+}) => (
 	<motion.div
 		className="flex h-full flex-col justify-between border-2 border-border-primary px-8 py-10 md:p-10 rounded-sm relative overflow-hidden"
 		initial={{ opacity: 0, y: 30 }}
@@ -73,7 +80,8 @@ const PricingCard = ({ title, price, features, buttonText, delay = 0, isInView }
 			</div>
 		</div>
 		<div>
-			<motion.div
+			<motion.a
+				href="/kontak"
 				whileHover={{ scale: 1.02 }}
 				whileTap={{ scale: 0.98 }}
 			>
@@ -84,7 +92,7 @@ const PricingCard = ({ title, price, features, buttonText, delay = 0, isInView }
 				>
 					{buttonText}
 				</Button>
-			</motion.div>
+			</motion.a>
 		</div>
 
 		{/* Decorative corner accent */}
@@ -142,36 +150,40 @@ export function Pricing() {
 					animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
 					transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
 				>
-					<Tabs defaultValue="monthly">
+					<Tabs defaultValue="studio">
 						<TabsList className="mx-auto mb-16 w-fit">
-							<TabsTrigger value="monthly">Tunai</TabsTrigger>
-							<TabsTrigger value="yearly">Cicilan</TabsTrigger>
+							<TabsTrigger value="studio">Studio (24 M²)</TabsTrigger>
+							<TabsTrigger value="family">Family Room (48 M²)</TabsTrigger>
 						</TabsList>
 						<TabsContent
-							value="monthly"
+							value="studio"
 							className="grid grid-cols-1 gap-10 data-[state=active]:animate-tabs md:grid-cols-2"
 						>
 							<PricingCard
-								title="Studio langsung"
-								price="Rp500jt"
+								title="Studio - Cash"
+								price="Rp 529.729.730"
 								features={[
-									"Luas 25-35 meter persegi",
-									"Sistem keamanan pintar terintegrasi",
-									"Kontrol suara dan aplikasi mobile",
+									"Luas 24 M²",
+									"Harga Jual: Rp 588.000.000",
+									"Diskon: Rp 58.270.270",
+									"Cash 3x: Rp 174.909.910/bulan",
+									"Cash 8x: Rp 67.843.468/bulan",
+									"Cash 12x: Rp 51.083.333/bulan",
 								]}
 								buttonText="Hubungi kami"
 								delay={0.4}
 								isInView={isInView}
 							/>
 							<PricingCard
-								title="Studio cicilan"
-								price="Rp25jt"
+								title="Studio - KPA"
+								price="Rp 3,5 juta/bulan"
 								features={[
-									"Cicilan 20 tahun tersedia",
-									"Bunga kompetitif dengan bank partner",
-									"Proses persetujuan cepat dan mudah",
-									"Dukungan tim finansial profesional",
-									"Fleksibilitas pembayaran sesuai kebutuhan",
+									"Booking Fee: Rp 5.000.000",
+									"Down Payment: Rp 55.000.000",
+									"Plafon KPA: Rp 538.000.000",
+									"Cicilan 10 Tahun: Rp 5 juta/bulan",
+									"Cicilan 15 Tahun: Rp 4 juta/bulan",
+									"Cicilan 20 Tahun: Rp 3,5 juta/bulan",
 								]}
 								buttonText="Ajukan sekarang"
 								delay={0.5}
@@ -179,30 +191,34 @@ export function Pricing() {
 							/>
 						</TabsContent>
 						<TabsContent
-							value="yearly"
+							value="family"
 							className="grid grid-cols-1 gap-10 data-[state=active]:animate-tabs md:grid-cols-2"
 						>
 							<PricingCard
-								title="Dua kamar tunai"
-								price="Rp850jt"
+								title="Family Room - Cash"
+								price="Rp 980.180.180"
 								features={[
-									"Luas 55-75 meter persegi",
-									"Dua kamar mandi lengkap",
-									"Balkon luas dengan pemandangan kota",
+									"Luas 48 M²",
+									"Harga Jual: Rp 1.088.000.000",
+									"Diskon: Rp 107.819.820",
+									"Cash 3x: Rp 326.726.727/bulan",
+									"Cash 8x: Rp 124.774.775/bulan",
+									"Cash 12x: Rp 93.166.667/bulan",
 								]}
 								buttonText="Hubungi kami"
 								delay={0.4}
 								isInView={isInView}
 							/>
 							<PricingCard
-								title="Dua kamar cicilan"
-								price="Rp42jt"
+								title="Family Room - KPA"
+								price="Rp 5,5 juta/bulan"
 								features={[
-									"Bunga kompetitif dengan bank partner",
-									"Proses persetujuan cepat dan mudah",
-									"Dukungan tim finansial profesional",
-									"Fleksibilitas pembayaran sesuai kebutuhan",
-									"Bonus asuransi properti tahun pertama",
+									"Booking Fee: Rp 5.000.000",
+									"Down Payment: Rp 115.000.000",
+									"Plafon KPA: Rp 988.000.000",
+									"Cicilan 10 Tahun: Rp 9 juta/bulan",
+									"Cicilan 15 Tahun: Rp 7 juta/bulan",
+									"Cicilan 20 Tahun: Rp 5,5 juta/bulan",
 								]}
 								buttonText="Ajukan sekarang"
 								delay={0.5}

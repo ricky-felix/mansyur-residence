@@ -3,7 +3,12 @@
 import { Button } from "@relume_io/relume-ui";
 import React, { useRef } from "react";
 import { RxChevronRight } from "react-icons/rx";
-import { HiOutlineSparkles, HiOutlineBriefcase, HiOutlineTruck, HiOutlineEye } from "react-icons/hi";
+import {
+	HiOutlineSparkles,
+	HiOutlineBriefcase,
+	HiOutlineTruck,
+	HiOutlineEye,
+} from "react-icons/hi";
 import { motion, useInView } from "framer-motion";
 
 // Animation variants
@@ -49,7 +54,10 @@ export function Amenities() {
 	const isInView = useInView(ref, { once: true, margin: "-80px" });
 
 	return (
-		<section id="amenities" className="px-[5%] py-24 md:py-32 lg:py-40 bg-gradient-to-b from-white to-primary-50">
+		<section
+			id="amenities"
+			className="px-[5%] py-24 md:py-32 lg:py-40 bg-gradient-to-b from-white to-primary-50"
+		>
 			<div className="container mx-auto">
 				<div className="mx-auto mb-16 w-full max-w-2xl text-center md:mb-20 lg:mb-24">
 					<motion.p
@@ -64,7 +72,11 @@ export function Amenities() {
 						className="mb-6 text-3xl font-bold leading-[1.1] tracking-[-0.02em] md:mb-7 md:text-4xl lg:text-5xl text-primary-900"
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+						transition={{
+							duration: 0.7,
+							delay: 0.1,
+							ease: [0.25, 0.1, 0.25, 1],
+						}}
 					>
 						Amenities kelas dunia
 					</motion.h1>
@@ -97,25 +109,40 @@ export function Amenities() {
 							}}
 						>
 							<div className="flex flex-1 flex-col justify-center p-8 md:p-10">
-								<motion.div className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit" variants={iconVariants} whileHover="hover">
-									<HiOutlineEye className="size-14 text-primary-700" aria-hidden="true" />
+								<motion.div
+									className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit"
+									variants={iconVariants}
+									whileHover="hover"
+								>
+									<HiOutlineEye
+										className="size-14 text-primary-700"
+										aria-hidden="true"
+									/>
 								</motion.div>
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
 									Lounge di langit
 								</h2>
-								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">Pemandangan kota Medan yang spektakuler dari ketinggian</p>
+								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">
+									Pemandangan kota Medan yang spektakuler dari ketinggian
+								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Jelajahi"
 											variant="link"
 											size="link"
-											iconRight={<RxChevronRight className="transition-transform duration-300 group-hover:translate-x-1" />}
+											iconRight={
+												<RxChevronRight className="transition-transform duration-300 group-hover:translate-x-1" />
+											}
 											className="text-primary-600 hover:text-primary-700 font-semibold group"
 										>
 											Jelajahi
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
 						</motion.div>
@@ -139,13 +166,17 @@ export function Amenities() {
 									Unggulan
 								</motion.p>
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
-									Kolam renang infinity
+									Kolam renang
 								</h2>
 								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">
 									Berenang dengan latar belakang cakrawala kota yang menawan
 								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Lihat"
 											variant="link"
@@ -155,14 +186,14 @@ export function Amenities() {
 										>
 											Lihat
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
-							<div className="flex w-full flex-col items-center justify-center self-start overflow-hidden">
+							<div className="flex flex-col items-center justify-center self-start overflow-hidden w-[400px] h-[400px]">
 								<motion.img
-									src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&h=400&fit=crop"
+									src="./images/home/Kolam_Renang.webp"
 									alt="Luxury infinity pool with city skyline view"
-									className="w-full"
+									className="w-full h-full object-cover"
 									whileHover={{ scale: 1.1 }}
 									transition={{ duration: 0.6, ease: "easeOut" }}
 								/>
@@ -192,9 +223,15 @@ export function Amenities() {
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
 									Pusat kebugaran modern
 								</h2>
-								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">Peralatan terkini untuk gaya hidup sehat dan aktif anda</p>
+								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">
+									Peralatan terkini untuk gaya hidup sehat dan aktif anda
+								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Lihat"
 											variant="link"
@@ -204,7 +241,7 @@ export function Amenities() {
 										>
 											Lihat
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
 							<div className="flex w-full flex-col items-center justify-center self-start overflow-hidden">
@@ -228,15 +265,28 @@ export function Amenities() {
 							}}
 						>
 							<div className="flex flex-1 flex-col justify-center p-8 md:p-10">
-								<motion.div className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit" variants={iconVariants} whileHover="hover">
-									<HiOutlineBriefcase className="size-14 text-primary-700" aria-hidden="true" />
+								<motion.div
+									className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit"
+									variants={iconVariants}
+									whileHover="hover"
+								>
+									<HiOutlineBriefcase
+										className="size-14 text-primary-700"
+										aria-hidden="true"
+									/>
 								</motion.div>
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
 									Ruang kerja bersama
 								</h2>
-								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">Lingkungan produktif untuk profesional dan entrepreneur</p>
+								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">
+									Lingkungan produktif untuk profesional dan entrepreneur
+								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Lihat"
 											variant="link"
@@ -246,7 +296,7 @@ export function Amenities() {
 										>
 											Lihat
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
 						</motion.div>
@@ -263,8 +313,15 @@ export function Amenities() {
 							}}
 						>
 							<div className="flex flex-1 flex-col justify-center p-8 md:p-10">
-								<motion.div className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit" variants={iconVariants} whileHover="hover">
-									<HiOutlineTruck className="size-14 text-primary-700" aria-hidden="true" />
+								<motion.div
+									className="mb-6 md:mb-7 p-4 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-lg w-fit"
+									variants={iconVariants}
+									whileHover="hover"
+								>
+									<HiOutlineTruck
+										className="size-14 text-primary-700"
+										aria-hidden="true"
+									/>
 								</motion.div>
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
 									Parkir pintar otomatis
@@ -274,7 +331,11 @@ export function Amenities() {
 									kemudahan anda
 								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Lihat"
 											variant="link"
@@ -284,7 +345,7 @@ export function Amenities() {
 										>
 											Lihat
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
 						</motion.div>
@@ -310,9 +371,15 @@ export function Amenities() {
 								<h2 className="mb-4 text-xl font-bold md:mb-5 md:text-2xl leading-[1.2] tracking-[-0.02em] text-primary-900">
 									Fitur pintar untuk kehidupan modern
 								</h2>
-								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">Rumah yang mendengarkan dan merespons kebutuhan anda</p>
+								<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-primary-800/80">
+									Rumah yang mendengarkan dan merespons kebutuhan anda
+								</p>
 								<div className="mt-6 md:mt-7">
-									<motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+									<motion.a
+										href="/gallery"
+										whileHover={{ x: 5 }}
+										transition={{ duration: 0.2 }}
+									>
 										<Button
 											title="Lihat"
 											variant="link"
@@ -322,7 +389,7 @@ export function Amenities() {
 										>
 											Lihat
 										</Button>
-									</motion.div>
+									</motion.a>
 								</div>
 							</div>
 							<div className="flex w-full flex-col items-center justify-center self-start overflow-hidden">
