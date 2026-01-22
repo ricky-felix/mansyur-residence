@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Suspense, lazy, useState, useEffect, useRef } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { WhatsAppButton } from "./components/common/WhatsAppButton.jsx";
 
 // Lazy load page components for code splitting
@@ -24,27 +24,58 @@ function LoadingScreen() {
 	);
 }
 
-function App() {
-	const [isLoading, setIsLoading] = useState(true);
+// Check if this is the initial page load on homepage
+function shouldShowLoading() {
+	if (sessionStorage.getItem("siteLoaded")) {
+		return false;
+	}
+	return true;
+}
+
+function markSiteAsLoaded() {
+	sessionStorage.setItem("siteLoaded", "true");
+}
+
+// Home wrapper with loading screen (only shows on initial site load to homepage)
+function HomeWithLoading() {
+	const [isLoading, setIsLoading] = useState(shouldShowLoading);
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 1300);
+		if (isLoading) {
+			const timer = setTimeout(() => {
+				markSiteAsLoaded();
+				setIsLoading(false);
+			}, 1300);
 
-		return () => clearTimeout(timer);
-	}, []);
+			return () => clearTimeout(timer);
+		}
+	}, [isLoading]);
 
 	if (isLoading) {
 		return <LoadingScreen />;
 	}
 
+	return <Home />;
+}
+
+function App() {
+	const { pathname } = useLocation();
+	const initialPathRef = useRef(pathname);
+
+	// If first load is NOT on home page, mark site as loaded
+	useEffect(() => {
+		const initialPath = initialPathRef.current;
+		if (initialPath !== "/" && initialPath !== "/home") {
+			markSiteAsLoaded();
+		}
+	}, []);
+
 	return (
 		<>
-			<Suspense fallback={<LoadingScreen />}>
+			<Suspense fallback={null}>
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/home" element={<Home />} />
+					<Route path="/" element={<HomeWithLoading />} />
+					<Route path="/home" element={<HomeWithLoading />} />
 
 					<Route path="/kontak" element={<ContactUs />} />
 					<Route path="/resident" element={<Residents />} />
