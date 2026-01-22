@@ -52,10 +52,10 @@ export function KontakMaps() {
 							<p className="mb-2">Kirim pesan langsung ke kami</p>
 							<a
 								className="underline underline-offset-2 transition-all duration-200 hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm"
-								href="mailto:hello@relume.io"
-								aria-label="Email hello@relume.io"
+								href="mailto:info@mansyurresidence.com"
+								aria-label="Email info@mansyurresidence.com"
 							>
-								hello@relume.io
+								info@mansyurresidence.com
 							</a>
 						</motion.div>
 						<motion.div
