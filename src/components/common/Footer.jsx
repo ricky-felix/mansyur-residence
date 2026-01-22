@@ -209,9 +209,9 @@ export function Footer() {
 						className="transition-opacity hover:opacity-80 duration-200"
 					>
 						<img
-							src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
+							src="./images/Mansyur_Residence_Logo.webp"
 							alt="Mansyur Residence Logo"
-							className="mb-8 inline-block sm:mb-0 h-10"
+							className="mb-8 inline-block sm:mb-0 h-16 md:h-20 w-auto"
 						/>
 					</a>
 				</div>
@@ -219,7 +219,7 @@ export function Footer() {
 				<div className="flex flex-col-reverse items-start gap-6 pb-4 pt-8 sm:flex-row sm:items-center sm:justify-between md:pb-0 md:pt-10">
 					<div className="flex flex-col-reverse items-start md:flex-row md:gap-8 lg:items-center">
 						<p className="text-base leading-[1.6] tracking-[-0.01em] text-white/60">
-							© 202 Mansyur Residence. All rights reserved.
+							© 2026 Mansyur Residence. All rights reserved.
 						</p>
 					</div>
 					<div className="flex items-center justify-center gap-5">

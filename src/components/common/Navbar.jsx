@@ -90,9 +90,9 @@ export function Navbar() {
 					aria-label="Mansyur Residence Home"
 				>
 					<img
-						src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
+						src="./images/Mansyur_Residence_Logo.webp"
 						alt="Mansyur Residence Logo"
-						className="h-8 md:h-10 w-auto drop-shadow-sm"
+						className="h-14 md:h-16 w-auto drop-shadow-sm"
 					/>
 				</a>
 				<div className="flex items-center justify-center gap-2 lg:gap-4">
