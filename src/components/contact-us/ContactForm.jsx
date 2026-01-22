@@ -14,10 +14,74 @@ import {
 	SelectValue,
 	Textarea,
 } from "@relume_io/relume-ui";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { BiEnvelope, BiMap, BiPhone } from "react-icons/bi";
 import { RxChevronRight } from "react-icons/rx";
 import { motion, useInView } from "framer-motion";
+
+// Toast notification component
+const Toast = ({ message, type, onClose }) => {
+	const bgColor =
+		type === "success"
+			? "bg-green-500"
+			: type === "error"
+			? "bg-red-500"
+			: "bg-blue-500";
+
+	return (
+		<motion.div
+			initial={{ opacity: 0, y: -50, x: "-50%" }}
+			animate={{ opacity: 1, y: 0, x: "-50%" }}
+			exit={{ opacity: 0, y: -50, x: "-50%" }}
+			className={`fixed top-8 left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-6 py-4 rounded-lg shadow-2xl z-[9999] min-w-[320px] max-w-md`}
+		>
+			<div className="flex items-center justify-between gap-4">
+				<p className="text-sm font-medium">{message}</p>
+				<button
+					onClick={onClose}
+					className="text-white hover:text-gray-200 transition-colors"
+					aria-label="Close notification"
+				>
+					<svg
+						className="w-5 h-5"
+						fill="none"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeWidth="2"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+		</motion.div>
+	);
+};
+
+// Loading spinner component
+const LoadingSpinner = () => (
+	<svg
+		className="animate-spin h-5 w-5 text-white"
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+	>
+		<circle
+			className="opacity-25"
+			cx="12"
+			cy="12"
+			r="10"
+			stroke="currentColor"
+			strokeWidth="4"
+		></circle>
+		<path
+			className="opacity-75"
+			fill="currentColor"
+			d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+		></path>
+	</svg>
+);
 
 // Animation variants
 const containerVariants = {
@@ -65,6 +129,23 @@ const iconHover = {
 	transition: { duration: 0.4 },
 };
 
+// Validation functions
+const validateEmail = (email) => {
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
+};
+
+const validatePhone = (phone) => {
+	// Indonesian phone number format: +62 or 0 followed by 8-13 digits
+	const phoneRegex = /^(\+62|62|0)[0-9]{8,13}$/;
+	const cleanPhone = phone.replace(/[\s-]/g, "");
+	return phoneRegex.test(cleanPhone);
+};
+
+const validateRequired = (value) => {
+	return value && value.trim().length > 0;
+};
+
 export function ContactForm() {
 	const headerRef = useRef(null);
 	const formRef = useRef(null);
@@ -75,6 +156,213 @@ export function ContactForm() {
 		once: true,
 		margin: "-80px",
 	});
+
+	// Form state
+	const [formData, setFormData] = useState({
+		firstName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		unitType: "",
+		interest: "",
+		message: "",
+		terms: false,
+	});
+
+	// Error state
+	const [errors, setErrors] = useState({});
+
+	// UI state
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [toast, setToast] = useState(null);
+
+	// Handle input changes
+	const handleChange = (field, value) => {
+		setFormData((prev) => ({
+			...prev,
+			[field]: value,
+		}));
+
+		// Clear error when user starts typing
+		if (errors[field]) {
+			setErrors((prev) => ({
+				...prev,
+				[field]: "",
+			}));
+		}
+	};
+
+	// Validate form
+	const validateForm = () => {
+		const newErrors = {};
+
+		// First name validation
+		if (!validateRequired(formData.firstName)) {
+			newErrors.firstName = "Nama depan wajib diisi";
+		}
+
+		// Last name validation
+		if (!validateRequired(formData.lastName)) {
+			newErrors.lastName = "Nama belakang wajib diisi";
+		}
+
+		// Email validation
+		if (!validateRequired(formData.email)) {
+			newErrors.email = "Email wajib diisi";
+		} else if (!validateEmail(formData.email)) {
+			newErrors.email = "Format email tidak valid";
+		}
+
+		// Phone validation
+		if (!validateRequired(formData.phone)) {
+			newErrors.phone = "Nomor telepon wajib diisi";
+		} else if (!validatePhone(formData.phone)) {
+			newErrors.phone = "Format nomor telepon tidak valid (contoh: +62812345678)";
+		}
+
+		// Unit type validation
+		if (!validateRequired(formData.unitType)) {
+			newErrors.unitType = "Pilih tipe unit yang diminati";
+		}
+
+		// Interest validation
+		if (!validateRequired(formData.interest)) {
+			newErrors.interest = "Pilih salah satu kepentingan";
+		}
+
+		// Message validation
+		if (!validateRequired(formData.message)) {
+			newErrors.message = "Pesan wajib diisi";
+		} else if (formData.message.trim().length < 10) {
+			newErrors.message = "Pesan minimal 10 karakter";
+		}
+
+		// Terms validation
+		if (!formData.terms) {
+			newErrors.terms = "Anda harus menyetujui kebijakan privasi";
+		}
+
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0;
+	};
+
+	// Handle form submission
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		// Validate form
+		if (!validateForm()) {
+			setToast({
+				type: "error",
+				message: "Mohon lengkapi semua field dengan benar",
+			});
+			return;
+		}
+
+		setIsSubmitting(true);
+
+		try {
+			// OPTION 1: Using Web3Forms (Free service)
+			// Sign up at https://web3forms.com to get your access key
+			const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY_HERE";
+
+			const response = await fetch("https://api.web3forms.com/submit", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify({
+					access_key: WEB3FORMS_ACCESS_KEY,
+					subject: "Formulir Kontak Baru - Mansyur Residence",
+					from_name: `${formData.firstName} ${formData.lastName}`,
+					email: formData.email,
+					phone: formData.phone,
+					unitType: formData.unitType,
+					interest: formData.interest,
+					message: formData.message,
+					// Additional metadata
+					"Tipe Unit": formData.unitType,
+					"Kepentingan": formData.interest,
+				}),
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				setToast({
+					type: "success",
+					message: "Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda.",
+				});
+
+				// Reset form
+				setFormData({
+					firstName: "",
+					lastName: "",
+					email: "",
+					phone: "",
+					unitType: "",
+					interest: "",
+					message: "",
+					terms: false,
+				});
+			} else {
+				throw new Error(result.message || "Gagal mengirim pesan");
+			}
+		} catch (error) {
+			console.error("Form submission error:", error);
+			setToast({
+				type: "error",
+				message: "Terjadi kesalahan. Silakan coba lagi nanti.",
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
+
+		// OPTION 2: Using your own backend API
+		/*
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
+
+			if (!response.ok) {
+				throw new Error('Failed to submit form');
+			}
+
+			const result = await response.json();
+
+			setToast({
+				type: 'success',
+				message: 'Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda.',
+			});
+
+			// Reset form
+			setFormData({
+				firstName: '',
+				lastName: '',
+				email: '',
+				phone: '',
+				unitType: '',
+				interest: '',
+				message: '',
+				terms: false,
+			});
+		} catch (error) {
+			console.error('Form submission error:', error);
+			setToast({
+				type: 'error',
+				message: 'Terjadi kesalahan. Silakan coba lagi nanti.',
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
+		*/
+	};
 
 	const contactInfo = [
 		{
@@ -107,6 +395,15 @@ export function ContactForm() {
 			id="contact-form"
 			className="px-[5%] py-24 md:py-32 lg:py-40 bg-gradient-to-br from-primary-100 via-primary-200 to-secondary-100 relative overflow-hidden"
 		>
+			{/* Toast notification */}
+			{toast && (
+				<Toast
+					message={toast.message}
+					type={toast.type}
+					onClose={() => setToast(null)}
+				/>
+			)}
+
 			{/* Decorative background elements */}
 			<div className="absolute top-0 right-0 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 			<div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary-300/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -152,7 +449,7 @@ export function ContactForm() {
 						}
 						transition={{ type: "spring", stiffness: 80, damping: 20 }}
 					>
-						<form className="grid grid-cols-1 gap-6">
+						<form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
 							{/* Name Fields */}
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 								<motion.div
@@ -167,14 +464,26 @@ export function ContactForm() {
 										htmlFor="firstName"
 										className="mb-2 text-primary-800 font-medium"
 									>
-										Nama depan
+										Nama depan <span className="text-red-500">*</span>
 									</Label>
 									<Input
 										type="text"
 										id="firstName"
-										className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300"
+										value={formData.firstName}
+										onChange={(e) => handleChange("firstName", e.target.value)}
+										className={`border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 ${
+											errors.firstName ? "border-red-500 focus:border-red-500" : ""
+										}`}
 										placeholder="John"
+										disabled={isSubmitting}
+										aria-invalid={!!errors.firstName}
+										aria-describedby={errors.firstName ? "firstName-error" : undefined}
 									/>
+									{errors.firstName && (
+										<p id="firstName-error" className="mt-1 text-sm text-red-600">
+											{errors.firstName}
+										</p>
+									)}
 								</motion.div>
 								<motion.div
 									className="grid w-full items-center"
@@ -188,14 +497,26 @@ export function ContactForm() {
 										htmlFor="lastName"
 										className="mb-2 text-primary-800 font-medium"
 									>
-										Nama belakang
+										Nama belakang <span className="text-red-500">*</span>
 									</Label>
 									<Input
 										type="text"
 										id="lastName"
-										className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300"
+										value={formData.lastName}
+										onChange={(e) => handleChange("lastName", e.target.value)}
+										className={`border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 ${
+											errors.lastName ? "border-red-500 focus:border-red-500" : ""
+										}`}
 										placeholder="Doe"
+										disabled={isSubmitting}
+										aria-invalid={!!errors.lastName}
+										aria-describedby={errors.lastName ? "lastName-error" : undefined}
 									/>
+									{errors.lastName && (
+										<p id="lastName-error" className="mt-1 text-sm text-red-600">
+											{errors.lastName}
+										</p>
+									)}
 								</motion.div>
 							</div>
 
@@ -213,14 +534,26 @@ export function ContactForm() {
 										htmlFor="email"
 										className="mb-2 text-primary-800 font-medium"
 									>
-										Email
+										Email <span className="text-red-500">*</span>
 									</Label>
 									<Input
 										type="email"
 										id="email"
-										className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300"
+										value={formData.email}
+										onChange={(e) => handleChange("email", e.target.value)}
+										className={`border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 ${
+											errors.email ? "border-red-500 focus:border-red-500" : ""
+										}`}
 										placeholder="john@example.com"
+										disabled={isSubmitting}
+										aria-invalid={!!errors.email}
+										aria-describedby={errors.email ? "email-error" : undefined}
 									/>
+									{errors.email && (
+										<p id="email-error" className="mt-1 text-sm text-red-600">
+											{errors.email}
+										</p>
+									)}
 								</motion.div>
 								<motion.div
 									className="grid w-full items-center"
@@ -234,14 +567,26 @@ export function ContactForm() {
 										htmlFor="phone"
 										className="mb-2 text-primary-800 font-medium"
 									>
-										Nomor telepon
+										Nomor telepon <span className="text-red-500">*</span>
 									</Label>
 									<Input
 										type="text"
 										id="phone"
-										className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300"
+										value={formData.phone}
+										onChange={(e) => handleChange("phone", e.target.value)}
+										className={`border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 ${
+											errors.phone ? "border-red-500 focus:border-red-500" : ""
+										}`}
 										placeholder="+62 812 3456 7890"
+										disabled={isSubmitting}
+										aria-invalid={!!errors.phone}
+										aria-describedby={errors.phone ? "phone-error" : undefined}
 									/>
+									{errors.phone && (
+										<p id="phone-error" className="mt-1 text-sm text-red-600">
+											{errors.phone}
+										</p>
+									)}
 								</motion.div>
 							</div>
 
@@ -255,10 +600,20 @@ export function ContactForm() {
 								transition={{ delay: 0.3 }}
 							>
 								<Label className="mb-2 text-primary-800 font-medium">
-									Tipe unit yang diminati
+									Tipe unit yang diminati <span className="text-red-500">*</span>
 								</Label>
-								<Select>
-									<SelectTrigger className="border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white transition-all duration-300 hover:border-primary-300 relative z-20">
+								<Select
+									value={formData.unitType}
+									onValueChange={(value) => handleChange("unitType", value)}
+									disabled={isSubmitting}
+								>
+									<SelectTrigger
+										className={`border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white transition-all duration-300 hover:border-primary-300 relative z-20 ${
+											errors.unitType ? "border-red-500" : ""
+										}`}
+										aria-invalid={!!errors.unitType}
+										aria-describedby={errors.unitType ? "unitType-error" : undefined}
+									>
 										<SelectValue placeholder="Pilih tipe unit" />
 									</SelectTrigger>
 									<SelectContent className="bg-white border-primary-200 rounded-lg shadow-lg z-50">
@@ -272,6 +627,11 @@ export function ContactForm() {
 										<SelectItem value="penthouse">Penthouse (72m²)</SelectItem>
 									</SelectContent>
 								</Select>
+								{errors.unitType && (
+									<p id="unitType-error" className="mt-1 text-sm text-red-600">
+										{errors.unitType}
+									</p>
+								)}
 							</motion.div>
 
 							{/* Radio Group */}
@@ -284,9 +644,14 @@ export function ContactForm() {
 								transition={{ delay: 0.35 }}
 							>
 								<Label className="mb-4 text-primary-800 font-medium">
-									Apa kepentingan anda?
+									Apa kepentingan anda? <span className="text-red-500">*</span>
 								</Label>
-								<RadioGroup className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+								<RadioGroup
+									value={formData.interest}
+									onValueChange={(value) => handleChange("interest", value)}
+									className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+									disabled={isSubmitting}
+								>
 									{[
 										{ value: "hunian", label: "Hunian pribadi" },
 										{ value: "investasi", label: "Investasi" },
@@ -298,12 +663,17 @@ export function ContactForm() {
 										<Label
 											key={option.value}
 											htmlFor={option.value}
-											className="flex items-center space-x-3 p-3 rounded-lg border border-primary-100 bg-white hover:bg-primary-50/50 hover:border-primary-300 transition-all duration-300 cursor-pointer"
+											className={`flex items-center space-x-3 p-3 rounded-lg border border-primary-100 bg-white hover:bg-primary-50/50 hover:border-primary-300 transition-all duration-300 cursor-pointer ${
+												formData.interest === option.value
+													? "border-primary-500 bg-primary-50/70"
+													: ""
+											} ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
 										>
 											<RadioGroupItem
 												value={option.value}
 												id={option.value}
 												className="text-primary-600"
+												disabled={isSubmitting}
 											/>
 											<span className="text-primary-700 text-sm">
 												{option.label}
@@ -311,6 +681,11 @@ export function ContactForm() {
 										</Label>
 									))}
 								</RadioGroup>
+								{errors.interest && (
+									<p id="interest-error" className="mt-2 text-sm text-red-600">
+										{errors.interest}
+									</p>
+								)}
 							</motion.div>
 
 							{/* Message */}
@@ -326,13 +701,25 @@ export function ContactForm() {
 									htmlFor="message"
 									className="mb-2 text-primary-800 font-medium"
 								>
-									Pesan
+									Pesan <span className="text-red-500">*</span>
 								</Label>
 								<Textarea
 									id="message"
+									value={formData.message}
+									onChange={(e) => handleChange("message", e.target.value)}
 									placeholder="Ceritakan kebutuhan anda atau ajukan pertanyaan..."
-									className="min-h-[140px] border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 resize-none"
+									className={`min-h-[140px] border-primary-200 focus:border-primary-500 focus:ring-primary-500/20 rounded-lg py-3 px-4 bg-white/50 transition-all duration-300 hover:border-primary-300 resize-none ${
+										errors.message ? "border-red-500 focus:border-red-500" : ""
+									}`}
+									disabled={isSubmitting}
+									aria-invalid={!!errors.message}
+									aria-describedby={errors.message ? "message-error" : undefined}
 								/>
+								{errors.message && (
+									<p id="message-error" className="mt-1 text-sm text-red-600">
+										{errors.message}
+									</p>
+								)}
 							</motion.div>
 
 							{/* Checkbox */}
@@ -346,21 +733,36 @@ export function ContactForm() {
 							>
 								<Checkbox
 									id="terms"
-									className="mt-0.5 border-primary-300 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600"
+									checked={formData.terms}
+									onCheckedChange={(checked) => handleChange("terms", checked)}
+									className={`mt-0.5 border-primary-300 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600 ${
+										errors.terms ? "border-red-500" : ""
+									}`}
+									disabled={isSubmitting}
+									aria-invalid={!!errors.terms}
+									aria-describedby={errors.terms ? "terms-error" : undefined}
 								/>
-								<Label
-									htmlFor="terms"
-									className="cursor-pointer text-primary-700 text-sm leading-relaxed"
-								>
-									Saya setuju untuk dihubungi oleh tim Mansyur Residence dan
-									menyetujui{" "}
-									<a
-										href="#"
-										className="text-primary-600 underline hover:text-primary-700"
+								<div className="flex-1">
+									<Label
+										htmlFor="terms"
+										className="cursor-pointer text-primary-700 text-sm leading-relaxed"
 									>
-										kebijakan privasi
-									</a>
-								</Label>
+										Saya setuju untuk dihubungi oleh tim Mansyur Residence dan
+										menyetujui{" "}
+										<a
+											href="#"
+											className="text-primary-600 underline hover:text-primary-700"
+										>
+											kebijakan privasi
+										</a>{" "}
+										<span className="text-red-500">*</span>
+									</Label>
+									{errors.terms && (
+										<p id="terms-error" className="mt-1 text-sm text-red-600">
+											{errors.terms}
+										</p>
+									)}
+								</div>
 							</motion.div>
 
 							{/* Submit Button */}
@@ -372,14 +774,27 @@ export function ContactForm() {
 								transition={{ delay: 0.5 }}
 							>
 								<motion.div
-									whileHover={{ scale: 1.02 }}
-									whileTap={{ scale: 0.98 }}
+									whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+									whileTap={!isSubmitting ? { scale: 0.98 } : {}}
 								>
 									<Button
-										title="Kirim Pesan"
-										className="w-full sm:w-auto px-8 py-4 text-base font-semibold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25"
+										type="submit"
+										title={isSubmitting ? "Mengirim..." : "Kirim Pesan"}
+										disabled={isSubmitting}
+										className={`w-full sm:w-auto px-8 py-4 text-base font-semibold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary-500/25 ${
+											isSubmitting
+												? "opacity-70 cursor-not-allowed"
+												: ""
+										} flex items-center justify-center gap-3`}
 									>
-										Kirim Pesan
+										{isSubmitting ? (
+											<>
+												<LoadingSpinner />
+												<span>Mengirim...</span>
+											</>
+										) : (
+											"Kirim Pesan"
+										)}
 									</Button>
 								</motion.div>
 							</motion.div>
@@ -452,42 +867,6 @@ export function ContactForm() {
 								</motion.div>
 							);
 						})}
-
-						{/* Additional CTA Card */}
-						{/* <motion.div
-							custom={3}
-							variants={cardVariants}
-							className="bg-gradient-to-br from-primary-700 to-primary-800 rounded-xl p-6 md:p-8 shadow-lg relative overflow-hidden"
-							whileHover={{
-								scale: 1.02,
-								transition: { type: "spring", stiffness: 300, damping: 20 },
-							}}
-						> */}
-						{/* Decorative element */}
-						{/* <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-							<div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary-500/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-
-							<div className="relative z-10">
-								<h3 className="mb-3 text-xl font-bold text-white">
-									Jadwalkan Kunjungan
-								</h3>
-								<p className="mb-5 text-primary-100/90 text-sm leading-relaxed">
-									Kunjungi showroom kami dan rasakan langsung
-									kemewahan Mansyur Residence
-								</p>
-								<motion.div
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
-								>
-									<Button
-										title="Booking Sekarang"
-										className="bg-secondary-500 hover:bg-secondary-600 text-primary-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
-									>
-										Booking Sekarang
-									</Button>
-								</motion.div>
-							</div>
-						</motion.div> */}
 					</motion.div>
 				</div>
 			</div>

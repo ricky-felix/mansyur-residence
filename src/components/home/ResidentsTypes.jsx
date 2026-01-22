@@ -45,6 +45,8 @@ export function ResidentsTypes() {
 								src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop"
 								className="size-full object-cover"
 								alt="Modern studio apartment interior with minimalist design"
+								loading="lazy"
+								decoding="async"
 								whileHover={{ scale: 1.05 }}
 								transition={{ duration: 0.5, ease: "easeOut" }}
 							/>
@@ -107,6 +109,8 @@ export function ResidentsTypes() {
 								src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
 								className="size-full object-cover"
 								alt="Spacious two bedroom apartment with modern furnishings"
+								loading="lazy"
+								decoding="async"
 								whileHover={{ scale: 1.05 }}
 								transition={{ duration: 0.5, ease: "easeOut" }}
 							/>

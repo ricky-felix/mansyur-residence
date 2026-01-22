@@ -1,0 +1,16 @@
+# robots.txt for Mansyur Residence
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Disallow crawling of assets that don't need indexing
+Disallow: /assets/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Sitemap location
+Sitemap: https://mansyur-residence.vercel.app/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1

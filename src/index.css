@@ -68,6 +68,35 @@ input[type="reset"],
 	cursor: pointer;
 }
 
+/* Enhanced Focus Indicators for Accessibility */
+*:focus {
+	outline: none;
+}
+
+*:focus-visible {
+	outline: 2px solid var(--color-primary-600);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* Skip to main content link for keyboard users */
+.skip-to-main {
+	position: absolute;
+	left: -9999px;
+	z-index: 999;
+	padding: 1em;
+	background-color: var(--color-primary-600);
+	color: white;
+	text-decoration: none;
+	border-radius: 0.25rem;
+}
+
+.skip-to-main:focus {
+	left: 50%;
+	transform: translateX(-50%);
+	top: 1rem;
+}
+
 @supports (backdrop-filter: blur(10px)) {
 	.glass-morphism {
 		backdrop-filter: blur(16px) saturate(180%);

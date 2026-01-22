@@ -3,6 +3,19 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
+// Image loading hook for managing individual image states
+const useImageLoader = () => {
+	const [loadedImages, setLoadedImages] = useState(new Set());
+
+	const handleImageLoad = (index) => {
+		setLoadedImages((prev) => new Set(prev).add(index));
+	};
+
+	const isImageLoaded = (index) => loadedImages.has(index);
+
+	return { handleImageLoad, isImageLoaded };
+};
+
 // Animation variants
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -37,6 +50,36 @@ export function GalleryImages(props) {
 	};
 
 	const [selectedImage, setSelectedImage] = useState(null);
+	const [lightboxImageLoaded, setLightboxImageLoaded] = useState(false);
+	const { handleImageLoad, isImageLoaded } = useImageLoader();
+
+	// Reset lightbox image loaded state when image changes
+	const handleImageClick = (image) => {
+		setSelectedImage(image);
+		setLightboxImageLoaded(false);
+	};
+
+	// Handle keyboard navigation in lightbox
+	React.useEffect(() => {
+		const handleKeyDown = (e) => {
+			if (selectedImage) {
+				if (e.key === 'Escape') {
+					setSelectedImage(null);
+				}
+			}
+		};
+
+		if (selectedImage) {
+			document.addEventListener('keydown', handleKeyDown);
+			// Prevent body scroll when lightbox is open
+			document.body.style.overflow = 'hidden';
+		}
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+			document.body.style.overflow = '';
+		};
+	}, [selectedImage]);
 
 	const headerRef = useRef(null);
 	const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
@@ -50,6 +93,7 @@ export function GalleryImages(props) {
 		<section
 			id="gallery"
 			className="px-[5%] py-16 md:py-24 lg:py-28 bg-secondary-200"
+			aria-labelledby="gallery-heading"
 		>
 			<div className="container mx-auto">
 				<motion.div
@@ -57,6 +101,7 @@ export function GalleryImages(props) {
 					className="mb-12 text-center md:mb-18 lg:mb-20"
 				>
 					<motion.h2
+						id="gallery-heading"
 						className="mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
 						initial={{ opacity: 0, y: 30 }}
 						animate={
@@ -85,16 +130,30 @@ export function GalleryImages(props) {
 					animate={isGalleryInView ? "visible" : "hidden"}
 				>
 					{images.map((image, index) => (
-						<motion.div
+						<motion.button
 							key={index}
-							onClick={() => setSelectedImage(image)}
+							onClick={() => handleImageClick(image)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									e.preventDefault();
+									handleImageClick(image);
+								}
+							}}
 							variants={imageVariants}
-							className="group relative overflow-hidden rounded-sm block cursor-pointer"
+							className="group relative overflow-hidden rounded-sm cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 focus-visible:ring-2 focus-visible:ring-primary-600"
 							whileHover={{
 								scale: 1.05,
 								transition: { type: "spring", stiffness: 300, damping: 20 },
 							}}
+							aria-label={`Lihat gambar penuh: ${image.alt}`}
 						>
+							{/* Skeleton placeholder with shimmer effect */}
+							{!isImageLoaded(index) && (
+								<div className="absolute inset-0 bg-gray-200 animate-pulse z-0">
+									<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
+								</div>
+							)}
+
 							{/* Image overlay on hover */}
 							<motion.div
 								className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 opacity-0"
@@ -103,11 +162,16 @@ export function GalleryImages(props) {
 							/>
 
 							{/* Zoom effect on image */}
-							<motion.div className="overflow-hidden">
+							<motion.div className="overflow-hidden relative">
 								<motion.img
 									src={image.src}
 									alt={image.alt}
-									className="size-full object-cover"
+									className={`size-full object-cover transition-opacity duration-500 ${
+										isImageLoaded(index) ? "opacity-100" : "opacity-0"
+									}`}
+									loading="lazy"
+									decoding="async"
+									onLoad={() => handleImageLoad(index)}
 									whileHover={{ scale: 1.15 }}
 									transition={{ duration: 0.6, ease: "easeOut" }}
 								/>
@@ -156,7 +220,7 @@ export function GalleryImages(props) {
 									ease: "easeInOut",
 								}}
 							/>
-						</motion.div>
+						</motion.button>
 					))}
 				</motion.div>
 			</div>
@@ -170,6 +234,9 @@ export function GalleryImages(props) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={() => setSelectedImage(null)}
+						role="dialog"
+						aria-modal="true"
+						aria-labelledby="lightbox-image-title"
 					>
 						<motion.div
 							className="relative max-w-5xl max-h-[90vh] w-full"
@@ -179,21 +246,35 @@ export function GalleryImages(props) {
 							transition={{ type: "spring", stiffness: 300, damping: 25 }}
 							onClick={(e) => e.stopPropagation()}
 						>
+							{/* Loading spinner for lightbox */}
+							{!lightboxImageLoaded && (
+								<div className="absolute inset-0 flex items-center justify-center">
+									<div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+								</div>
+							)}
+
 							<motion.img
+								id="lightbox-image-title"
 								src={selectedImage.src}
 								alt={selectedImage.alt}
-								className="w-full h-full object-contain rounded-lg"
+								className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
+									lightboxImageLoaded ? "opacity-100" : "opacity-0"
+								}`}
+								loading="eager"
+								decoding="async"
+								onLoad={() => setLightboxImageLoaded(true)}
 							/>
 							<button
 								onClick={() => setSelectedImage(null)}
-								className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-								aria-label="Close lightbox"
+								className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-full flex items-center justify-center transition-colors"
+								aria-label={`Tutup tampilan gambar: ${selectedImage.alt}`}
 							>
 								<svg
 									className="w-6 h-6 text-white"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"

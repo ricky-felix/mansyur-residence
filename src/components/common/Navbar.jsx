@@ -296,16 +296,20 @@ export function Navbar() {
 											<a
 												href="https://web.facebook.com/p/mansyurresidence-100063528183662/?_rdc=1&_rdr"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
-												aria-label="Facebook"
+												aria-label="Kunjungi halaman Facebook Mansyur Residence"
+												target="_blank"
+												rel="noopener noreferrer"
 											>
-												<BiLogoFacebook className="size-6" />
+												<BiLogoFacebook className="size-6" aria-hidden="true" />
 											</a>
 											<a
 												href="https://www.instagram.com/mansyur.residence/"
 												className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
-												aria-label="Instagram"
+												aria-label="Kunjungi halaman Instagram Mansyur Residence"
+												target="_blank"
+												rel="noopener noreferrer"
 											>
-												<BiLogoInstagram className="size-6" />
+												<BiLogoInstagram className="size-6" aria-hidden="true" />
 											</a>
 											{/* <a
 												href="#"

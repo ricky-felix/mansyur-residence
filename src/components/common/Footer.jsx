@@ -20,19 +20,20 @@ export function Footer() {
 			<div className="container mx-auto relative z-10">
 				<div className="lg:flex lg:items-start lg:justify-between lg:gap-16">
 					<div className="max-w-2xl">
-						<h1 className="mb-6 text-3xl font-bold leading-[1.1] tracking-[-0.02em] md:mb-7 md:text-4xl lg:text-5xl drop-shadow-md">
+						<h2 className="mb-6 text-3xl font-bold leading-[1.1] tracking-[-0.02em] md:mb-7 md:text-4xl lg:text-5xl drop-shadow-md">
 							Mulai hidup pintar hari ini
-						</h1>
+						</h2>
 						<p className="text-base md:text-lg leading-[1.7] tracking-[-0.01em] text-white/90">
 							Bergabunglah dengan komunitas penghuni Mansyur Residence yang
 							terus berkembang
 						</p>
 					</div>
 					<div className="mt-8 flex flex-wrap gap-5 md:mt-10 lg:mt-0 lg:flex-nowrap">
-						<a href="/kontak">
+						<a href="/kontak" className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-md">
 							<Button
 								title="Jadwalkan"
 								className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700 text-primary-900 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/30 hover:-translate-y-0.5"
+								aria-label="Jadwalkan kunjungan ke Mansyur Residence"
 							>
 								Jadwalkan
 							</Button>
@@ -41,11 +42,13 @@ export function Footer() {
 							href="/documents/Mansyur_Residence_E-Brosur.pdf"
 							target="_blank"
 							rel="noopener noreferrer"
+							className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-md"
 						>
 							<Button
 								title="Unduh"
 								variant="secondary"
 								className="px-8 py-4 text-base font-semibold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+								aria-label="Unduh brosur Mansyur Residence dalam format PDF"
 							>
 								Unduh
 							</Button>
@@ -55,16 +58,16 @@ export function Footer() {
 				<div className="py-16 md:py-20 lg:py-24">
 					<div className="h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 				</div>
-				<div className="mb-16 grid grid-cols-2 items-start gap-x-12 gap-y-12 md:mb-20 md:gap-y-14 lg:mb-24 lg:grid-cols-4 lg:gap-x-16">
+				<nav className="mb-16 grid grid-cols-2 items-start gap-x-12 gap-y-12 md:mb-20 md:gap-y-14 lg:mb-24 lg:grid-cols-4 lg:gap-x-16" aria-label="Footer navigation">
 					<div className="flex flex-col items-start justify-start">
-						<h2 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
+						<h3 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
 							Halaman
-						</h2>
+						</h3>
 						<ul className="space-y-3">
 							<li>
 								<a
 									href="/"
-									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Beranda
 								</a>
@@ -72,7 +75,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/residents"
-									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Residents
 								</a>
@@ -80,7 +83,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/gallery"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Galeri
 								</a>
@@ -88,7 +91,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/contact-us"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Hubungi Kami
 								</a>
@@ -96,14 +99,14 @@ export function Footer() {
 						</ul>
 					</div>
 					<div className="flex flex-col items-start justify-start">
-						<h2 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
+						<h3 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
 							Residents
-						</h2>
+						</h3>
 						<ul className="space-y-3">
 							<li>
 								<a
 									href="/resident"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Harga Unit
 								</a>
@@ -111,7 +114,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/resident"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Bandingkan Unit
 								</a>
@@ -119,7 +122,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/resident"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Tur Virtual
 								</a>
@@ -127,7 +130,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/resident"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Tanya Sekarang
 								</a>
@@ -135,14 +138,14 @@ export function Footer() {
 						</ul>
 					</div>
 					<div className="flex flex-col items-start justify-start">
-						<h2 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
+						<h3 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
 							Fasilitas
-						</h2>
+						</h3>
 						<ul className="space-y-3">
 							<li>
 								<a
 									href="/gallery"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Kolam Infinity
 								</a>
@@ -150,7 +153,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/gallery"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Pusat Kebugaran
 								</a>
@@ -158,7 +161,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/gallery"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Sky Lounge
 								</a>
@@ -166,7 +169,7 @@ export function Footer() {
 							<li>
 								<a
 									href="/gallery"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
 								>
 									Parkir Pintar
 								</a>
@@ -174,14 +177,15 @@ export function Footer() {
 						</ul>
 					</div>
 					<div className="flex flex-col items-start justify-start">
-						<h2 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
+						<h3 className="mb-4 text-base font-semibold tracking-[-0.01em] text-secondary-300">
 							Kontak
-						</h2>
+						</h3>
 						<ul className="space-y-3">
 							<li>
 								<a
 									href="tel:+6285358565679"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+									aria-label="Telepon +62 853 5856 5679"
 								>
 									+62-853-5856-5679
 								</a>
@@ -189,24 +193,26 @@ export function Footer() {
 							<li>
 								<a
 									href="mailto:info@mansyurresidence.com"
-									className="text-sm leading-[1.6] tracking-[-0.01em] opacity-80 hover:opacity-100 transition-opacity duration-200"
+									className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+									aria-label="Email info@mansyurresidence.com"
 								>
 									info@mansyurresidence.com
 								</a>
 							</li>
 							<li>
-								<span className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70">
+								<address className="text-sm leading-[1.6] tracking-[-0.01em] text-white/70 not-italic">
 									Jl. Dr. Mansyur No.165, Tj. Rejo, Kec. Medan Sunggal, Kota
 									Medan, Sumatera Utara 20154, Indonesia
-								</span>
+								</address>
 							</li>
 						</ul>
 					</div>
-				</div>
+				</nav>
 				<div className="col-span-1 flex flex-col items-start justify-between pb-8 sm:flex-row sm:items-center md:pb-10 lg:col-span-2">
 					<a
 						href="/"
-						className="transition-opacity hover:opacity-80 duration-200"
+						className="transition-opacity hover:opacity-80 duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+						aria-label="Mansyur Residence beranda"
 					>
 						<img
 							src="./images/Mansyur_Residence_Logo.webp"
@@ -225,17 +231,21 @@ export function Footer() {
 					<div className="flex items-center justify-center gap-5">
 						<a
 							href="https://web.facebook.com/p/mansyurresidence-100063528183662/?_rdc=1&_rdr"
-							className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
-							aria-label="Facebook"
+							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+							aria-label="Kunjungi halaman Facebook Mansyur Residence"
+							target="_blank"
+							rel="noopener noreferrer"
 						>
-							<BiLogoFacebookCircle className="size-6" />
+							<BiLogoFacebookCircle className="size-6" aria-hidden="true" />
 						</a>
 						<a
 							href="https://www.instagram.com/mansyur.residence/"
-							className="transition-all duration-200 hover:scale-110 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 rounded-sm"
-							aria-label="Instagram"
+							className="transition-all duration-200 hover:scale-110 hover:text-secondary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+							aria-label="Kunjungi halaman Instagram Mansyur Residence"
+							target="_blank"
+							rel="noopener noreferrer"
 						>
-							<BiLogoInstagram className="size-6" />
+							<BiLogoInstagram className="size-6" aria-hidden="true" />
 						</a>
 						{/* <a
 							href="#"

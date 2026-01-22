@@ -49,7 +49,7 @@ export function Hero() {
 			ref={useActive.transformRef}
 			id="hero"
 			className="relative flex h-[300vh] flex-col items-center bg-gradient-to-br from-primary-200 via-primary-300 to-secondary-200 text-primary-900 mt-16 md:mt-18"
-			aria-label="Hero section"
+			aria-labelledby="hero-heading"
 		>
 			<div className="px-[5%]">
 				<div className="sticky top-0 z-0 mx-auto flex min-h-[80vh] max-w-2xl items-center justify-center py-20 text-center md:py-28 lg:py-32">
@@ -58,6 +58,7 @@ export function Hero() {
 						className="space-y-6 md:space-y-8"
 					>
 						<motion.h1
+							id="hero-heading"
 							className="text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl bg-gradient-to-r from-primary-800 via-primary-600 to-primary-700 bg-clip-text text-transparent drop-shadow-sm"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
@@ -85,10 +86,11 @@ export function Hero() {
 								href="/resident"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
+								className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 rounded-md"
 							>
 								<Button
 									title="Lihat Residens"
-									className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+									className="px-8 py-4 text-base font-semibold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5"
 									aria-label="Lihat unit residens yang tersedia"
 								>
 									Lihat Residens
@@ -100,12 +102,13 @@ export function Hero() {
 								rel="noopener noreferrer"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
+								className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 rounded-md"
 							>
 								<Button
 									title="Unduh Brosur"
 									variant="secondary"
-									className="px-8 py-4 text-base font-semibold bg-white/80 hover:bg-white text-primary-700 border-2 border-primary-300 hover:border-primary-400 transition-all duration-300 hover:shadow-lg hover:shadow-primary-300/20 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 backdrop-blur-sm"
-									aria-label="Unduh brosur informasi Mansyur Residence"
+									className="px-8 py-4 text-base font-semibold bg-white/80 hover:bg-white text-primary-700 border-2 border-primary-300 hover:border-primary-400 transition-all duration-300 hover:shadow-lg hover:shadow-primary-300/20 hover:-translate-y-0.5 backdrop-blur-sm"
+									aria-label="Unduh brosur informasi Mansyur Residence dalam format PDF"
 								>
 									Unduh Brosur
 								</Button>
@@ -128,8 +131,11 @@ export function Hero() {
 				<div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent z-10 pointer-events-none" />
 				<motion.img
 					src="./images/home/Mansyur_Residence.webp"
-					alt="Luxury modern apartment building with stunning architecture"
+					alt="Gedung apartemen mewah Mansyur Residence dengan arsitektur modern, fasad kaca, dan desain kontemporer di Medan"
 					className="size-full object-cover"
+					loading="eager"
+					fetchpriority="high"
+					decoding="async"
 					whileHover={{ scale: 1.05 }}
 					transition={{ duration: 0.5, ease: "easeOut" }}
 				/>
