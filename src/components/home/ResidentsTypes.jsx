@@ -25,7 +25,7 @@ export function ResidentsTypes() {
 					>
 						<p className="mb-3 font-semibold md:mb-4">Unit</p>
 						<h2 className="rb-5 mb-5 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
-							Residens
+							Residens Tower 2 (Diamond)
 						</h2>
 						<p className="md:text-md">
 							Pilih unit yang sesuai dengan kebutuhan anda

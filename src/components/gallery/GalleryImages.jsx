@@ -245,16 +245,16 @@ export const GalleryDefaults = {
 			src: "./images/gallery/Mansyur-Residence-15.webp",
 			alt: "State-of-the-art fitness center",
 		},
-		// {
-		// 	url: "#",
-		// 	src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop",
-		// 	alt: "Elegant bathroom with marble finishes",
-		// },
-		// {
-		// 	url: "#",
-		// 	src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=600&fit=crop",
-		// 	alt: "Private balcony with panoramic views",
-		// },
+		{
+			url: "#",
+			src: "./images/gallery/Mansyur-Residence-08.webp",
+			alt: "Elegant bathroom with marble finishes",
+		},
+		{
+			url: "#",
+			src: "./images/gallery/Mansyur-Residence-40.webp",
+			alt: "Private balcony with panoramic views",
+		},
 	],
 };
 

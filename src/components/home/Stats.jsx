@@ -138,9 +138,9 @@ export function Stats() {
 	const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
 
 	const stats = [
-		{ number: "288", label: "Unit tersedia", index: 0 },
-		{ number: "28", label: "Lantai modern", index: 1 },
-		{ number: "2025", label: "Selesai tahun depan", index: 2 },
+		{ number: "100", label: "% Tower 1 (Ruby) sold out", index: 0 },
+		{ number: "26", label: "Lantai modern", index: 1 },
+		{ number: "10", label: "Tahun beroperasi", index: 2 },
 	];
 
 	return (
